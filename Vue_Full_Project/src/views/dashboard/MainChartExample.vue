@@ -30,7 +30,7 @@ export default {
     var data3 = []
 
     for (var i = 0; i <= elements; i++) {
-      data1.push(random(50, 1000))
+      data1.push(random(50, 200))
       data2.push(random(80, 100))
       data3.push(random(80, 100))
     }
@@ -77,8 +77,8 @@ export default {
           ticks: {
             beginAtZero: true,
             maxTicksLimit: 5,
-            stepSize: Math.ceil(1000 / 5),
-            max: 1000
+            stepSize: Math.ceil(200 / 5),
+            max: 200
           },
           gridLines: {
             display: true

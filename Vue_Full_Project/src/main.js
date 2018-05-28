@@ -5,11 +5,7 @@ import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
 import store from './vuex/store'
-import AmCharts from 'amcharts3'
-import AmSerial from 'amcharts3/amcharts/serial'
 
-Vue.use(AmSerial)
-Vue.use(AmCharts)
 Vue.use(BootstrapVue)
 
 /* eslint-disable no-new */
