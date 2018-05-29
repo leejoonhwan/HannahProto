@@ -8,7 +8,7 @@
             <h6 class="mb-0">누적 13,333명 (+134 명)</h6>
             <h6 class="mb-2">4/29 기준</h6>
           </b-card-body>
-          <bar-top-half class="chart-wrapper px-3" style="height:70px;" :chartData='memberShipChart'/>
+          <bar-top-half v-if='loaded' class="chart-wrapper px-3" style="height:70px;" :chartData='memberShipChart'/>
         </b-card>
       </b-col>
       <b-col sm="6" lg="6">
@@ -18,7 +18,7 @@
             <h6 class="mb-0">당일 345건 (+34 명)</h6>
             <h6 class="mb-2">4/29 기준</h6>
           </b-card-body>
-          <bar-top-half class="chart-wrapper px-3" style="height:70px;" :chartData='memberVisitChart'/>
+          <bar-top-half v-if='loaded' class="chart-wrapper px-3" style="height:70px;" :chartData='memberVisitChart'/>
         </b-card>
       </b-col>
     </b-row>
@@ -95,8 +95,6 @@ import MainChartExample from '../dashboard/MainChartExample'
 import SocialBoxChartExample from '../dashboard/SocialBoxChartExample'
 import CalloutChartExample from '../dashboard/CalloutChartExample'
 import { Callout } from '../../components/'
-import store from '../../vuex/store'
-// import { mapGetters, mapActions } from 'vuex'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AgeGenderChart from '../dashboard/AgeGenderChart'
 import cTable from '../dashboard/Table.vue'
@@ -119,16 +117,12 @@ export default {
   },
   data () {
     return {
-      memberShipChart: {title: '', labels: [], datasets: [{label: '', backgroundColor: '', borderColor: '', data: []}]},
-      memberVisitChart: {title: '', labels: [], datasets: [{label: '', backgroundColor: '', borderColor: '', data: []}]},
+      loaded: false,
+      memberShipChart: {}, // title: '', labels: [], datasets: [{label: '', backgroundColor: '', borderColor: '', data: []}]},
+      memberVisitChart: {}, // title: '', labels: [], datasets: [{label: '', backgroundColor: '', borderColor: '', data: []}]},
       value3: new Date()
     }
   },
-  store,
-  // computed: mapGetters({
-  //   itemMemberItems: 'getMemberCount',
-  //   itemMemberVisitItems: 'getMemberVisitCount'
-  // }),
   methods: {
     getBarChartData (url, chartData) {
       // axios.get(url)
@@ -139,7 +133,7 @@ export default {
       //       label: 'Data11',
       //       backgroundColor: 'rgba(255,255,255,.3)',
       //       borderColor: 'transparent',
-      //       data: [response.data]
+      //       data: response.data
       //     }]
       //     console.log('Ajax response : ' + response.data)
       //   })
@@ -159,7 +153,7 @@ export default {
       })
     }
   },
-  mounted () {
+  created () {
     this.loaded = false
     this.getBarChartData('/static/dummy/getMemberCount', this.memberShipChart)
     this.getBarChartData('/static/dummy/getMemberVisitCount', this.memberVisitChart)

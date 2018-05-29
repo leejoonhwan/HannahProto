@@ -116,7 +116,7 @@ export default {
         'enabled': true
       }
     }
-    AmCharts.makeChart(this.$refs.chartdiv, configs)
+    window.AmCharts.makeChart(this.$refs.chartdiv, configs)
   }
 }
 </script>
