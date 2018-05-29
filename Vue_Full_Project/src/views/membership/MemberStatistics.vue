@@ -8,7 +8,7 @@
             <h6 class="mb-0">누적 13,333명 (+134 명)</h6>
             <h6 class="mb-2">4/29 기준</h6>
           </b-card-body>
-          <card-bar-chart-example class="chart-wrapper px-3" style="height:70px;" height="70" :items='memberShipChart' backgroundColor= "rgba(255,255,255,.3)" borderColor ='transparent'/>
+          <member-card-bar-chart class="chart-wrapper px-3" style="height:70px;" height="70"/>
         </b-card>
       </b-col>
       <b-col sm="6" lg="6">
@@ -84,6 +84,7 @@
 <style scoped>
 </style>
 <script>
+import MemberCardBarChart from '../dashboard/MemberCardBarChart'
 import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
 import CardLine3ChartExample from '../dashboard/CardLine3ChartExample'
@@ -111,7 +112,8 @@ export default {
     CalloutChartExample,
     DatePicker,
     cTable,
-    AmchartExample
+    AmchartExample,
+    MemberCardBarChart
   },
   data () {
     return {
@@ -131,33 +133,22 @@ export default {
     ...mapActions(['getMemberCount', 'getMemberVisitCount'])
   },
   created () {
-    console.log('created parents itemss')
     this.getMemberCount()
     this.getMemberVisitCount()
     this.memberShipChart = this.itemMemberItems
     this.memberVisitChart = this.itemMemberVisitItems
-    console.log(this.memberShipChart)
-    console.log(this.memberVisitChart)
   },
   mounted () {
     this.getMemberCount()
     this.getMemberVisitCount()
     this.memberShipChart = this.itemMemberItems
     this.memberVisitChart = this.itemMemberVisitItems
-
-    console.log('mounted parents itemss')
-    console.log(this.memberShipChart)
-    console.log(this.memberVisitChart)
   },
   updated () {
     this.getMemberCount()
     this.getMemberVisitCount()
     this.memberShipChart = this.itemMemberItems
     this.memberVisitChart = this.itemMemberVisitItems
-
-    console.log('updated parents itemss')
-    console.log(this.memberShipChart)
-    console.log(this.memberVisitChart)
   }
 
 }

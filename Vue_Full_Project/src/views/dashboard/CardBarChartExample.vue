@@ -25,10 +25,6 @@ export default {
 
     dataset = [options]
 
-    console.log('barchart parents itemss')
-    console.log(this.items)
-    console.log(options)
-
     this.renderChart({
       labels: ['5/15', '5/16', '5/17', '5/18', '5/19', '5/20', '5/21', '5/22', '5/23', '5/24', '5/25', '', '', '', '', ''],
       datasets: dataset
