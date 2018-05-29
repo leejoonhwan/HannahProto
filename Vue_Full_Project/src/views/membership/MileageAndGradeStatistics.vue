@@ -8,7 +8,7 @@
             <h6 class="mb-0">누적 13,333명 (+134 명)</h6>
             <h6 class="mb-2">4/29 기준</h6>
           </b-card-body>
-          <bar-top-half v-if='loaded' class="chart-wrapper px-3" style="height:70px;" :chartData='memberShipChart'/>
+          <bar-top-half class="chart-wrapper px-3" style="height:140px;" :apiUrl='getMemberCount' />
         </b-card>
       </b-col>
       <b-col sm="6" lg="6">
@@ -18,7 +18,7 @@
             <h6 class="mb-0">당일 345건 (+34 명)</h6>
             <h6 class="mb-2">4/29 기준</h6>
           </b-card-body>
-          <bar-top-half v-if='loaded' class="chart-wrapper px-3" style="height:70px;" :chartData='memberVisitChart'/>
+          <bar-top-half class="chart-wrapper px-3" style="height:140px;" :apiUrl='getVisitCount' />
         </b-card>
       </b-col>
     </b-row>
@@ -117,49 +117,14 @@ export default {
   },
   data () {
     return {
-      loaded: false,
-      memberShipChart: {}, // title: '', labels: [], datasets: [{label: '', backgroundColor: '', borderColor: '', data: []}]},
-      memberVisitChart: {}, // title: '', labels: [], datasets: [{label: '', backgroundColor: '', borderColor: '', data: []}]},
+      getMemberCount: '/static/dummy/getMemberCount',
+      getVisitCount: '/static/dummy/getMemberVisitCount',
       value3: new Date()
     }
   },
   methods: {
-    getBarChartData (url, chartData) {
-      // axios.get(url)
-      //   .then(response => {
-      //     chartData.labels = ['5/15', '5/16', '5/17', '5/18', '5/19', '5/20', '5/21', '5/22', '5/23', '5/24', '5/25', '', '', '', '', '']
-      //     chartData.datasets = [{
-      //       title: '',
-      //       label: 'Data11',
-      //       backgroundColor: 'rgba(255,255,255,.3)',
-      //       borderColor: 'transparent',
-      //       data: response.data
-      //     }]
-      //     console.log('Ajax response : ' + response.data)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-      fetch(url).then(res => res.json()).then(response => {
-        chartData.labels = ['5/15', '5/16', '5/17', '5/18', '5/19', '5/20', '5/21', '5/22', '5/23', '5/24', '5/25', '', '', '', '', '']
-        chartData.datasets = [{
-          title: '',
-          label: 'Data11',
-          backgroundColor: 'rgba(255,255,255,.3)',
-          borderColor: 'transparent',
-          data: response
-        }]
-        console.log('Ajax response : ' + response)
-      })
-    }
   },
-  created () {
-    this.loaded = false
-    this.getBarChartData('/static/dummy/getMemberCount', this.memberShipChart)
-    this.getBarChartData('/static/dummy/getMemberVisitCount', this.memberVisitChart)
-    this.loaded = true
-    // console.log(this.memberShipChart)
-    // console.log(this.memberVisitChart)
+  mounted () {
   }
 }
 </script>
