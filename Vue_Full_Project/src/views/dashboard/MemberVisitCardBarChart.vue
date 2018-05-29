@@ -13,7 +13,6 @@ export default {
   props: ['height'],
   methods: {
     getBarChartData (url, dataset) {
-      console.log('Member Bar Chart 데이터 가져오기 getBarChartData ---------------------------')
       fetch(url).then(res => res.json()).then(response => {
         dataset.pop(0)
         dataset.push({
@@ -26,7 +25,6 @@ export default {
       })
     },
     drawChart (pDataset) {
-      console.log('MemberCardBarChart drawChart in---------------------------')
       console.log(pDataset)
       this.renderChart({
         labels: ['5/15', '5/16', '5/17', '5/18', '5/19', '5/20', '5/21', '5/22', '5/23', '5/24', '5/25', '', '', '', '', ''],
@@ -50,11 +48,9 @@ export default {
     }
   },
   mounted () {
-    console.log('MemberCardBarChart mounted in---------------------------')
-    this.getBarChartData('/static/dummy/getMemberCount', dataset)
+    this.getBarChartData('/static/dummy/getMemberVisitCount', dataset)
   },
   created () {
-    console.log('MemberCardBarChart created in---------------------------')
   }
 }
 </script>

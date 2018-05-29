@@ -18,7 +18,7 @@
             <h6 class="mb-0">당일 345건 (+34 명)</h6>
             <h6 class="mb-2">4/29 기준</h6>
           </b-card-body>
-          <card-bar-chart-example class="chart-wrapper px-3" style="height:70px;" height="70" :items='memberVisitChart' backgroundColor= "rgba(255,255,255,.3)" borderColor ='transparent'/>
+          <member-visit-card-bar-chart class="chart-wrapper px-3" style="height:70px;" height="70"/>
         </b-card>
       </b-col>
     </b-row>
@@ -85,6 +85,7 @@
 </style>
 <script>
 import MemberCardBarChart from '../dashboard/MemberCardBarChart'
+import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
 import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
 import CardLine3ChartExample from '../dashboard/CardLine3ChartExample'
@@ -93,8 +94,6 @@ import MainChartExample from '../dashboard/MainChartExample'
 import SocialBoxChartExample from '../dashboard/SocialBoxChartExample'
 import CalloutChartExample from '../dashboard/CalloutChartExample'
 import { Callout } from '../../components/'
-import store from '../../vuex/store'
-import { mapGetters, mapActions } from 'vuex'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AmchartExample from '../dashboard/AmchartExample'
 import cTable from '../dashboard/Table.vue'
@@ -113,44 +112,18 @@ export default {
     DatePicker,
     cTable,
     AmchartExample,
-    MemberCardBarChart
+    MemberCardBarChart,
+    MemberVisitCardBarChart
   },
   data () {
     return {
-      memberShipChart: [{
-      }],
-      memberVisitChart: [{
-      }],
       value3: new Date()
     }
   },
-  store,
-  computed: mapGetters({
-    itemMemberItems: 'getMemberCount',
-    itemMemberVisitItems: 'getMemberVisitCount'
-  }),
-  methods: {
-    ...mapActions(['getMemberCount', 'getMemberVisitCount'])
-  },
   created () {
-    this.getMemberCount()
-    this.getMemberVisitCount()
-    this.memberShipChart = this.itemMemberItems
-    this.memberVisitChart = this.itemMemberVisitItems
   },
   mounted () {
-    this.getMemberCount()
-    this.getMemberVisitCount()
-    this.memberShipChart = this.itemMemberItems
-    this.memberVisitChart = this.itemMemberVisitItems
-  },
-  updated () {
-    this.getMemberCount()
-    this.getMemberVisitCount()
-    this.memberShipChart = this.itemMemberItems
-    this.memberVisitChart = this.itemMemberVisitItems
   }
-
 }
 </script>
 
