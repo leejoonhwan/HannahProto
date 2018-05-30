@@ -27,7 +27,7 @@
       </b-col>
       <b-col sm="6" lg="4">
         <br><br>
-        <c-table small caption="<i class='fa fa-align-justify'></i> Condensed Table"></c-table>
+        <member-gender-age-table small caption="<i class='fa fa-align-justify'></i> Condensed Table" ref="childTableComponent"></member-gender-age-table>
       </b-col>
     </b-row>
   </b-card>
@@ -35,14 +35,14 @@
 
 <script>
 import AmchartExample from '../dashboard/AmchartExample'
-import cTable from '../dashboard/Table.vue'
+import MemberGenderAgeTable from '../dashboard/MemberGenderAgeTable.vue'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import 'amcharts3'
 
 export default {
   name: 'MemberGenderAgeComponent',
   components: {
-    cTable,
+    MemberGenderAgeTable,
     AmchartExample,
     DatePicker
   },
@@ -56,18 +56,29 @@ export default {
   },
   mounted () {
     this.getGenderAgeData('/static/dummy/getMemberGenderAge')
+    this.getGenderAgeTableData('/static/dummy/getMemberGenderAgeTable')
   },
   updated () {
-    var url = ''
+    var urlChartData = ''
+    var urlTableData = ''
+
     if (this.membershipSelected === 'visit') {
-      url = '/static/dummy/getMemberVisitGenderAge'
+      urlChartData = '/static/dummy/getMemberVisitGenderAge'
+      urlTableData = '/static/dummy/getMemberVisitGenderAgeTable'
     } else {
-      url = '/static/dummy/getMemberGenderAge'
+      urlChartData = '/static/dummy/getMemberGenderAge'
+      urlTableData = '/static/dummy/getMemberGenderAgeTable'
     }
-    this.getGenderAgeData(url)
+    this.getGenderAgeData(urlChartData)
+    this.getGenderAgeTableData(urlTableData)
   },
   methods: {
-    getGenderAgeData (url, propsData) {
+    getGenderAgeTableData (url) {
+      fetch(url).then((resp) => resp.json()).then(response => {
+        this.$refs.childTableComponent.items = response
+      })
+    },
+    getGenderAgeData (url) {
       fetch(url).then((resp) => resp.json()).then(response => {
         this.drawAmchart(response)
       })

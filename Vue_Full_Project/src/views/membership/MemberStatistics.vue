@@ -100,7 +100,6 @@ export default {
   mounted () {
   },
   updated () {
-    alert('멤버십 방문/회원 구분 변경')
   }
 }
 </script>

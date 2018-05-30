@@ -13,7 +13,7 @@
    */
 
 export default {
-  name: 'c-table',
+  name: 'memberGenderAgeTable',
   props: {
     caption: {
       type: String,
