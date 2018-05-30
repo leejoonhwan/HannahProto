@@ -1,13 +1,25 @@
 var sample = { id: 'niip00ng@daum.net', name: '이준환' }
-var membershipList = ['행복충전', '리바이스']
+var membershipList = [
+  { value: '행복충전', text: '행복충전' },
+  { value: '리바이스', text: '리바이스' }]
 var memberCnt = [10, 12, 14, 15, 20, 34, 54, 84, 32, 10, 32, 68, 54, 72, 18, 98]
 var memberVisitCnt = [45, 45, 45, 45, 45, 50, 50, 50, 50, 50, 50, 50, 60, 60, 60, 60]
+
+var memberShipStatus = ''
 
 export default {
   fetchItemLists: () => {
     return new Promise((resolve) => {
       resolve({ data: sample })
     })
+  },
+  getMembershipStatus: () => {
+    return new Promise((resolve) => {
+      resolve({ data: memberShipStatus })
+    })
+  },
+  updateMembershipStatus: (text) => {
+    memberShipStatus = text
   },
   getMemberCount: () => {
     return new Promise((resolve) => {

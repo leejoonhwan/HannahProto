@@ -10,7 +10,7 @@
       <LoginInfo/>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
-      <b-form-select id="basicSelectLg" :options="membershipLists" value="행복충전"/>
+      <member-ship-select></member-ship-select>
       <HeaderDropdown/>
     </b-navbar-nav>
     <div class="navbar-toggler aside-menu-toggler d-md-down-none">
@@ -20,20 +20,20 @@
 <script>
 import HeaderDropdown from './HeaderDropdown.vue'
 import LoginInfo from './LoginInfo.vue'
-import store from '../../vuex/store'
-import { mapGetters, mapActions } from 'vuex'
+import MemberShipSelect from './MemberShipSelect'
 export default {
   name: 'c-header',
-  store,
+  data () {
+    return {
+      membershipSelectData: []
+    }
+  },
   components: {
+    MemberShipSelect,
     HeaderDropdown,
     LoginInfo
   },
-  computed: mapGetters({
-    membershipLists: 'getMembershipLists'
-  }),
   methods: {
-    ...mapActions(['getMembershipLists']),
     sidebarToggle (e) {
       e.preventDefault()
       document.body.classList.toggle('sidebar-hidden')
@@ -52,8 +52,10 @@ export default {
     }
   },
   mounted () {
-    // 마운트된 시점에 데이터를 불러온다(비동기)
-    this.getMembershipLists()
   }
 }
 </script>
+
+<style scoped>
+
+</style>

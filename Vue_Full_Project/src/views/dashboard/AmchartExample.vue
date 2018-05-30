@@ -8,10 +8,13 @@
 import 'amcharts3'
 export default {
   name: 'AmchartExample',
+  props: ['childSelected'],
   data () {
     return {
       msg: 'Welcome to Your Vue.js + amCharts App'
     }
+  },
+  updated: function () {
   },
   mounted () {
     var configs = {
@@ -19,31 +22,7 @@ export default {
       'theme': 'light',
       'rotate': true,
       'marginBottom': 50,
-      'dataProvider': [{
-        'age': '60~+',
-        'male': -3.0,
-        'female': 4.0
-      }, {
-        'age': '50-59',
-        'male': -4.0,
-        'female': 10.0
-      }, {
-        'age': '40-49',
-        'male': -6.5,
-        'female': 17.3
-      }, {
-        'age': '30-39',
-        'male': -9.8,
-        'female': 19.2
-      }, {
-        'age': '20-29',
-        'male': -5.8,
-        'female': 16.0
-      }, {
-        'age': '10-19',
-        'male': -3.1,
-        'female': 5.3
-      }],
+      'dataProvider': this.childSelected,
       'startDuration': 1,
       'graphs': [{
         'fillAlphas': 0.8,

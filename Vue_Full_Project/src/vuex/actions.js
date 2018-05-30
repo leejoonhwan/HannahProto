@@ -24,5 +24,13 @@ export default {
     api.getMemberVisitCount().then((response) => {
       commit(types.MEMBERVISITCOUNT_ITEM_LISTS, response.data)
     })
+  },
+  updateMembershipStatus: (store, newItem) => {
+    api.updateMembershipStatus(newItem)
+  },
+  getMembershipStatus: ({ commit }) => {
+    api.getMembershipStatus().then((response) => {
+      commit(types.MEMBERSHIP_STATUS, response.data)
+    })
   }
 }

@@ -12,5 +12,8 @@ export default {
   },
   [types.MEMBERVISITCOUNT_ITEM_LISTS] (state, lists) {
     state.memberVisitCount = lists
+  },
+  [types.MEMBERSHIP_STATUS] (state, status) {
+    state.memberShipStatus = status
   }
 }

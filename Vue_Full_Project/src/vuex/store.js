@@ -10,7 +10,8 @@ const state = {
   itemLists: [],
   membershipLists: [],
   memberCount: [],
-  memberVisitCount: []
+  memberVisitCount: [],
+  memberShipStatus: ''
 }
 
 export default new Vuex.Store({

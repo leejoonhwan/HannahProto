@@ -7,6 +7,7 @@ var dataset = [{
 export default {
   data () {
     return {
+      membershipStatus: ''
     }
   },
   extends: Bar,
@@ -51,6 +52,9 @@ export default {
     this.getBarChartData('/static/dummy/getMemberVisitCount', dataset)
   },
   created () {
+  },
+  updated () {
+    console.log('업데이트 됨')
   }
 }
 </script>
