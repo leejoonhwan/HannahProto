@@ -17,10 +17,7 @@ export default {
   },
   computed: mapGetters({
     membershipListsItem: 'getMembershipLists',
-    membershipStatus: 'getMembershipStatus',
-    getMembershipStatueExample () {
-      return this.$store.state.memberShipStatus
-    }
+    membershipStatus: 'getMembershipStatus'
   }),
   components: {
   },
@@ -31,12 +28,12 @@ export default {
     // 마운트된 시점에 데이터를 불러온다(비동기)
     this.getMembershipLists()
     this.getMembershipStatus()
+    this.membershipSelected = this.membershipStatus
     this.membershipLists = this.membershipListsItem
   },
   created () {
   },
   updated () {
-    alert('바뀜 감지 ' + this.membershipSelected)
   }
 }
 </script>

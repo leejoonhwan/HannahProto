@@ -22,38 +22,14 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-card>
-      <b-row>
-        <b-col sm="5">
-          <h4 id="traffic" class="card-title mb-0">시계열 / Time Series</h4>
-        </b-col>
-        <b-col sm="2">
-            <b-form-select id="basicSelectLg" :options="timeSeries" value="멤버십 회원" v-model="membershipSelected"/>
-        </b-col>
-        <b-col sm="2">
-            <b-form-select id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
-        </b-col>
-        <b-col sm="2">
-          <date-picker v-model="value3" range lang="en"></date-picker>
-        </b-col>
-        <b-col md="1">
-          <i class="fa fa-refresh fa-2x mt-1" style="color: #3b5998"></i>
-          &nbsp;&nbsp;&nbsp;
-          <i class="fa fa-download fa-2x mt-1" style="color: #7ab800"></i>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col sm="5">
-        </b-col>
-      </b-row>
-      <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300"></main-chart-example>
-    </b-card>
+    <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
   </div>
 </template>
 <style scoped>
 </style>
 <script>
+import MemberTimeseriesComponent from '../dashboard/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
 import MemberCardBarChart from '../dashboard/MemberCardBarChart'
 import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
@@ -61,7 +37,6 @@ import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
 import CardLine3ChartExample from '../dashboard/CardLine3ChartExample'
 import CardBarChartExample from '../dashboard/CardBarChartExample'
-import MainChartExample from '../dashboard/MainChartExample'
 import SocialBoxChartExample from '../dashboard/SocialBoxChartExample'
 import CalloutChartExample from '../dashboard/CalloutChartExample'
 import { Callout } from '../../components/'
@@ -77,7 +52,6 @@ export default {
     CardLine2ChartExample,
     CardLine3ChartExample,
     CardBarChartExample,
-    MainChartExample,
     SocialBoxChartExample,
     CalloutChartExample,
     DatePicker,
@@ -85,7 +59,8 @@ export default {
     AmchartExample,
     MemberCardBarChart,
     MemberVisitCardBarChart,
-    MemberGenderAgeComponent
+    MemberGenderAgeComponent,
+    MemberTimeseriesComponent
   },
   data () {
     return {

@@ -1,0 +1,118 @@
+{
+    "title": "멤버십 회원",
+    "count": 14,
+    "data": [
+        {
+            "date": "2018-05-14",
+            "wday": "Thursday",
+            "new": 30,
+            "total": 1030,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Friday",
+            "new": 40,
+            "total": 1070,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Saturday",
+            "new": 10,
+            "total": 1080,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Sunday",
+            "new": 15,
+            "total": 1095,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Monday",
+            "new": 35,
+            "total": 1130,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Tuesday",
+            "new": 50,
+            "total": 1180,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Wednsday",
+            "new": 60,
+            "total": 1240,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Thursday",
+            "new": 47,
+            "total": 1287,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Friday",
+            "new": 33,
+            "total": 1320,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Saturday",
+            "new": 20,
+            "total": 1340,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Sunday",
+            "new": 30,
+            "total": 1370,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Monday",
+            "new": 50,
+            "total": 1420,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Tuesday",
+            "new": 46,
+            "total": 1466,
+            "pause": 1030,
+            "withdraw": 1030
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Wednsday",
+            "new": 66,
+            "total": 1532,
+            "pause": 1030,
+            "withdraw": 1030
+        }
+    ]
+}
