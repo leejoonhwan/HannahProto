@@ -1,5 +1,6 @@
 <template>
   <b-card>
+    <div v-if="this.$store.state.memberShipStatus"></div>
     <b-row>
       <b-col sm="5">
         <h4 id="traffic" class="card-title mb-0">시계열 / Time Series</h4>
@@ -30,6 +31,7 @@
 import MainChartExample from '../dashboard/MainChartExample'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import action from '../../api/index'
+import store from '../../vuex/store'
 export default {
   name: 'MemberTimeseriesComponent',
   action,
@@ -37,25 +39,39 @@ export default {
     MainChartExample,
     DatePicker
   },
+  store,
   data () {
     return {
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
-      value3: new Date()
+      value3: new Date(),
+      urlSet: {
+        'levis': {
+          'timeSeriesVisitUrl': '/static/dummy/getLevisTimeSeriesVisit',
+          'timeSeriesMemberUrl': '/static/dummy/getLevisTimeSeriesMember'
+        },
+        'happyCharge': {
+          'timeSeriesVisitUrl': '/static/dummy/getHappyChargeTimeSeriesVisit',
+          'timeSeriesMemberUrl': '/static/dummy/getHappyChargeTimeSeriesMember'
+        }
+      }
     }
   },
   mounted () {
     this.getTimeSeriesData('/static/dummy/getTimeSeriesMember')
   },
   updated () {
-    var urlChartData = ''
+    var urlChartData = this.urlSet
+    if (this.$store.state.memberShipStatus === 'levis') urlChartData = urlChartData.levis
+    else if (this.$store.state.memberShipStatus === 'happyCharge') urlChartData = urlChartData.happyCharge
 
     if (this.membershipSelected === 'visit') {
-      urlChartData = '/static/dummy/getTimeSeriesVisit'
+      urlChartData = urlChartData.timeSeriesVisitUrl
     } else {
-      urlChartData = '/static/dummy/getTimeSeriesMember'
+      urlChartData = urlChartData.timeSeriesMemberUrl
     }
+    console.log(this.$store.state.memberShipStatus + ' : ' + urlChartData)
     this.getTimeSeriesData(urlChartData)
   },
   methods: {
@@ -70,7 +86,7 @@ export default {
         var dataWithdraw = []
         var dataNew = []
         var dateList = []
-        console.log(size)
+
         for (var i = 0; i < size; i++) {
           dataTotlal.push(response.data[i].total)
           dataPause.push(response.data[i].pause)

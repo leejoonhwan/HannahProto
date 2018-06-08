@@ -28,12 +28,13 @@ export default {
     // 마운트된 시점에 데이터를 불러온다(비동기)
     this.getMembershipLists()
     this.getMembershipStatus()
-    this.membershipSelected = this.membershipStatus
+    this.membershipSelected =
     this.membershipLists = this.membershipListsItem
   },
   created () {
   },
   updated () {
+    this.$store.state.memberShipStatus = this.membershipSelected
   }
 }
 </script>

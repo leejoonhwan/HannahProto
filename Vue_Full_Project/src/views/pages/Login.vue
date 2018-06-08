@@ -56,6 +56,12 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   store,
+  data () {
+    return {
+      loginId: '',
+      password: ''
+    }
+  },
   methods: {
     ...mapActions(['updateLoginInfo', 'updateMembershipStatus']),
     moveDashboard (loginId, password) {

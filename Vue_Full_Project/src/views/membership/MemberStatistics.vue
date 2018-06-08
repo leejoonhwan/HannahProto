@@ -22,6 +22,7 @@
         </b-card>
       </b-col>
     </b-row>
+    <span></span>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
   </div>
@@ -43,6 +44,7 @@ import { Callout } from '../../components/'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AmchartExample from '../dashboard/AmchartExample'
 import cTable from '../dashboard/Table.vue'
+import store from '../../vuex/store'
 
 export default {
   name: 'memberStatistics',
@@ -62,15 +64,18 @@ export default {
     MemberGenderAgeComponent,
     MemberTimeseriesComponent
   },
+  store,
   data () {
     return {
       membershipSelected: '',
       timeSeries: [{value: '멤버십 회원', text: '멤버십 회원'},
         {value: '멤버십 방문', text: '멤버십 방문'}],
-      value3: new Date()
+      value3: new Date(),
+      membershipStatusIndex: ''
     }
   },
   created () {
+
   },
   mounted () {
   },
