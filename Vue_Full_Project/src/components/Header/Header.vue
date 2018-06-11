@@ -51,6 +51,8 @@ export default {
       document.body.classList.toggle('aside-menu-hidden')
     }
   },
+  created () {
+  },
   mounted () {
   }
 }

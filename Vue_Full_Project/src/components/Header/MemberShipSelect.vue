@@ -1,5 +1,5 @@
 <template>
-  <b-form-select id="basicSelectLg" :options="membershipListsItem" v-model="membershipSelected" />
+  <b-form-select id="basicSelectLg" v-model="selected" :options="membershipListsItem" />
 </template>
 
 <script>
@@ -11,8 +11,8 @@ export default {
   store,
   data () {
     return {
-      membershipSelected: '',
-      membershipLists: []
+      membershipLists: [],
+      selected: ''
     }
   },
   computed: mapGetters({
@@ -26,15 +26,16 @@ export default {
   },
   mounted () {
     // 마운트된 시점에 데이터를 불러온다(비동기)
+    // selected 값을 호출
     this.getMembershipLists()
     this.getMembershipStatus()
-    this.membershipSelected =
+    this.selected = this.$store.state.memberShipStatus
     this.membershipLists = this.membershipListsItem
   },
   created () {
   },
   updated () {
-    this.$store.state.memberShipStatus = this.membershipSelected
+    this.$store.state.memberShipStatus = this.selected
   }
 }
 </script>

@@ -66,7 +66,7 @@ export default {
     ...mapActions(['updateLoginInfo', 'updateMembershipStatus']),
     moveDashboard (loginId, password) {
       this.updateLoginInfo({loginId, password})
-      this.updateMembershipStatus('행복충전')
+      this.updateMembershipStatus('happyCharge')
       this.$router.push('../../dashboard')
     }
   }

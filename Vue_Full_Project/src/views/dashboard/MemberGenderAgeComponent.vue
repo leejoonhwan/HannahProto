@@ -38,6 +38,7 @@ import AmchartExample from '../dashboard/AmchartExample'
 import MemberGenderAgeTable from '../dashboard/MemberGenderAgeTable.vue'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import 'amcharts3'
+import store from '../../vuex/store'
 
 export default {
   name: 'MemberGenderAgeComponent',
@@ -46,6 +47,7 @@ export default {
     AmchartExample,
     DatePicker
   },
+  store,
   data () {
     return {
       membershipSelected: 'member',

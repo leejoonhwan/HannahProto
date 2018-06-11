@@ -22,7 +22,6 @@
         </b-card>
       </b-col>
     </b-row>
-    <span></span>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
   </div>

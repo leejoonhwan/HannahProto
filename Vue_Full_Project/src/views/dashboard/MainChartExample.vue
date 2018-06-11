@@ -1,68 +1,25 @@
 <script>
-import { Line } from 'vue-chartjs'
-
+import { Line, mixins } from 'vue-chartjs'
+const { reactiveProp } = mixins
 // const brandPrimary = '#20a8d8'
-const brandSuccess = '#4dbd74'
-const brandInfo = '#63c2de'
-const brandDanger = '#f86c6b'
 
 export default {
   extends: Line,
+  mixins: [reactiveProp],
   props: ['height'],
   data () {
     return {
-      dataTotal: [],
-      dataPause: [],
-      dataWithdraw: [],
-      dataNew: [],
-      dateList: []
     }
   },
   mounted () {
-    console.log('mount=========================')
     this.drawChart()
+  },
+  updated () {
+    alert('update call ')
   },
   methods: {
     drawChart () {
-      this.renderChart({
-        labels: this.dateList,
-        datasets: [
-          {
-            label: 'My First dataset',
-            backgroundColor: 'transparent',
-            borderColor: brandInfo,
-            pointHoverBackgroundColor: '#fff',
-            borderWidth: 2,
-            data: this.dataTotal
-          },
-          {
-            label: 'My Second dataset',
-            backgroundColor: 'transparent',
-            borderColor: brandSuccess,
-            pointHoverBackgroundColor: '#fff',
-            borderWidth: 2,
-            data: this.dataPause
-          },
-          {
-            label: 'My Third dataset',
-            backgroundColor: 'transparent',
-            borderColor: brandDanger,
-            pointHoverBackgroundColor: '#fff',
-            borderWidth: 1,
-            borderDash: [2, 2],
-            data: this.dataWithdraw
-          },
-          {
-            label: 'My four dataset',
-            backgroundColor: 'transparent',
-            borderColor: brandDanger,
-            pointHoverBackgroundColor: '#fff',
-            borderWidth: 1,
-            borderDash: [2, 2],
-            data: this.dataNew
-          }
-        ]
-      }, {
+      this.renderChart(this.chartData, {
         maintainAspectRatio: false,
         legend: {
         },

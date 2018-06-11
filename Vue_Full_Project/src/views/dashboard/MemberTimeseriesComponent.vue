@@ -24,24 +24,37 @@
       <b-col sm="5">
       </b-col>
     </b-row>
-    <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300" ref="childTimeSeriesComponent"></main-chart-example>
+    <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300" :chart-data="datacollection"></main-chart-example>
   </b-card>
 </template>
 <script>
 import MainChartExample from '../dashboard/MainChartExample'
+import RandomChart from '../dashboard/RandomChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import action from '../../api/index'
 import store from '../../vuex/store'
+
+const brandSuccess = '#4dbd74'
+const brandInfo = '#63c2de'
+const brandDanger = '#f86c6b'
+
 export default {
   name: 'MemberTimeseriesComponent',
   action,
   components: {
     MainChartExample,
-    DatePicker
+    DatePicker,
+    RandomChart
   },
   store,
   data () {
     return {
+      dataTotal: [],
+      dataPause: [],
+      dataWithdraw: [],
+      dataNew: [],
+      dateList: [],
+      datacollection: null,
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
@@ -59,9 +72,11 @@ export default {
     }
   },
   mounted () {
+    this.initData()
     this.getTimeSeriesData('/static/dummy/getTimeSeriesMember')
   },
   updated () {
+    this.initData()
     var urlChartData = this.urlSet
     if (this.$store.state.memberShipStatus === 'levis') urlChartData = urlChartData.levis
     else if (this.$store.state.memberShipStatus === 'happyCharge') urlChartData = urlChartData.happyCharge
@@ -72,35 +87,69 @@ export default {
       urlChartData = urlChartData.timeSeriesMemberUrl
     }
     console.log(this.$store.state.memberShipStatus + ' : ' + urlChartData)
-    this.getTimeSeriesData(urlChartData)
+    // this.getTimeSeriesData(urlChartData)
   },
   methods: {
+    initData () {
+      this.dataTotal = []
+      this.dataPause = []
+      this.dataWithdraw = []
+      this.dataNew = []
+      this.dateList = []
+    },
     getTimeSeriesData (url) {
       fetch(url).then((resp) => resp.json()).then(response => {
-        console.log(response)
-
         const size = response.data.length
-
-        var dataTotlal = []
-        var dataPause = []
-        var dataWithdraw = []
-        var dataNew = []
-        var dateList = []
-
         for (var i = 0; i < size; i++) {
-          dataTotlal.push(response.data[i].total)
-          dataPause.push(response.data[i].pause)
-          dataWithdraw.push(response.data[i].withdraw)
-          dataNew.push(response.data[i].new)
-          dateList.push(response.data[i].date)
+          this.dataTotal.push(response.data[i].total)
+          this.dataPause.push(response.data[i].pause)
+          this.dataWithdraw.push(response.data[i].exit)
+          this.dataNew.push(response.data[i].join)
+          this.dateList.push(response.data[i].date)
         }
-        this.$refs.childTimeSeriesComponent.dataTotal = dataTotlal
-        this.$refs.childTimeSeriesComponent.dateList = dateList
-        this.$refs.childTimeSeriesComponent.dataPause = dataPause
-        this.$refs.childTimeSeriesComponent.dataWithdraw = dataWithdraw
-        this.$refs.childTimeSeriesComponent.dataNew = dataNew
-        this.$refs.childTimeSeriesComponent.drawChart()
+        this.makeDataCollection()
       })
+    },
+    makeDataCollection () {
+      this.datacollection = {
+        labels: this.dateList,
+        datasets: [
+          {
+            label: 'My First dataset',
+            backgroundColor: 'transparent',
+            borderColor: brandInfo,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: this.dataTotal
+          },
+          {
+            label: 'My Second dataset',
+            backgroundColor: 'transparent',
+            borderColor: brandSuccess,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: this.dataPause
+          },
+          {
+            label: 'My Third dataset',
+            backgroundColor: 'transparent',
+            borderColor: brandDanger,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 1,
+            borderDash: [2, 2],
+            data: this.dataWithdraw
+          },
+          {
+            label: 'My four dataset',
+            backgroundColor: 'transparent',
+            borderColor: brandDanger,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 1,
+            borderDash: [2, 2],
+            data: this.dataNew
+          }
+        ]
+      }
     }
   }
 }
