@@ -7,12 +7,9 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
-  itemLists: [],
   membershipLists: [],
-  memberCount: [],
-  memberVisitCount: [],
   memberShipStatus: '',
-  counter: 0
+  itemLists: []
 }
 
 export default new Vuex.Store({
@@ -20,5 +17,4 @@ export default new Vuex.Store({
   mutations,
   getters,
   actions
-  // plugins: [createPersistedState()]
 })

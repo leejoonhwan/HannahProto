@@ -1,55 +1,29 @@
 <script>
 import { Line, mixins } from 'vue-chartjs'
 const { reactiveProp } = mixins
-// const brandPrimary = '#20a8d8'
 
 export default {
   extends: Line,
   mixins: [reactiveProp],
-  props: ['height'],
+  props: ['height', 'options'],
   data () {
     return {
     }
   },
-  mounted () {
-    this.drawChart()
+  created () {
+    console.log('MainChart created')
+    console.log(this.chartData)
+    console.log(this.options)
   },
-  updated () {
-    alert('update call ')
+  mounted () {
+    console.log('MainChart mounted')
+    console.log(this.chartData)
+    console.log(this.options)
+    this.drawChart()
   },
   methods: {
     drawChart () {
-      this.renderChart(this.chartData, {
-        maintainAspectRatio: false,
-        legend: {
-        },
-        scales: {
-          xAxes: [{
-            gridLines: {
-              drawOnChartArea: false
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              maxTicksLimit: 100,
-              stepSize: Math.ceil(2000 / 5),
-              max: 2000
-            },
-            gridLines: {
-              display: true
-            }
-          }]
-        },
-        elements: {
-          point: {
-            radius: 0,
-            hitRadius: 10,
-            hoverRadius: 4,
-            hoverBorderWidth: 3
-          }
-        }
-      })
+      this.renderChart(this.chartData, this.options)
     }
   }
 }

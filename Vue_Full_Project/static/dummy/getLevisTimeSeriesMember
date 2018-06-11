@@ -5,114 +5,114 @@
         {
             "date": "2018-05-14",
             "wday": "Thursday",
-            "new": 30,
+            "join": 30,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Friday",
-            "new": 40,
+            "join": 40,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Saturday",
-            "new": 10,
+            "join": 10,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Sunday",
-            "new": 15,
+            "join": 15,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Monday",
-            "new": 35,
+            "join": 35,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Tuesday",
-            "new": 50,
+            "join": 50,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Wednsday",
-            "new": 60,
+            "join": 60,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Thursday",
-            "new": 47,
+            "join": 47,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Friday",
-            "new": 33,
+            "join": 33,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Saturday",
-            "new": 20,
+            "join": 20,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Sunday",
-            "new": 30,
+            "join": 30,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Monday",
-            "new": 50,
+            "join": 50,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Tuesday",
-            "new": 46,
+            "join": 46,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         },
         {
             "date": "2018-05-14",
             "wday": "Wednsday",
-            "new": 66,
+            "join": 66,
             "total": 800,
             "pause": 633,
-            "withdraw": 1030
+            "exit": 1030
         }
     ]
 }

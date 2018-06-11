@@ -1,6 +1,5 @@
 <template>
   <b-card>
-    <div v-if="this.$store.state.memberShipStatus"></div>
     <b-row>
       <b-col sm="5">
         <h4 id="traffic" class="card-title mb-0">시계열 / Time Series</h4>
@@ -24,7 +23,7 @@
       <b-col sm="5">
       </b-col>
     </b-row>
-    <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300" :chart-data="datacollection"></main-chart-example>
+    <main-chart-example class="chart-wrapper" style="height:300px;margin-top:40px;" height="300" :chart-data="dataCollection" :options="dataOptions"></main-chart-example>
   </b-card>
 </template>
 <script>
@@ -49,12 +48,14 @@ export default {
   store,
   data () {
     return {
+      dataUrl: '',
       dataTotal: [],
       dataPause: [],
       dataWithdraw: [],
       dataNew: [],
       dateList: [],
-      datacollection: null,
+      dataOptions: null,
+      dataCollection: null,
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
@@ -71,25 +72,42 @@ export default {
       }
     }
   },
+  created () {
+    console.log('MemberTimeseriesComponent created')
+    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
+  },
   mounted () {
-    this.initData()
-    this.getTimeSeriesData('/static/dummy/getTimeSeriesMember')
+    console.log('MemberTimeseriesComponent mounted')
+    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   updated () {
-    this.initData()
-    var urlChartData = this.urlSet
-    if (this.$store.state.memberShipStatus === 'levis') urlChartData = urlChartData.levis
-    else if (this.$store.state.memberShipStatus === 'happyCharge') urlChartData = urlChartData.happyCharge
-
-    if (this.membershipSelected === 'visit') {
-      urlChartData = urlChartData.timeSeriesVisitUrl
-    } else {
-      urlChartData = urlChartData.timeSeriesMemberUrl
+    console.log('updated')
+  },
+  computed: {
+    membershipIndex () {
+      return this.$store.state.memberShipStatus
     }
-    console.log(this.$store.state.memberShipStatus + ' : ' + urlChartData)
-    // this.getTimeSeriesData(urlChartData)
+  },
+  watch: {
+    membershipIndex (val) {
+      console.log('watched: ', val)
+      this.getDataUrl()
+      this.getTimeSeriesData(this.dataUrl)
+    }
   },
   methods: {
+    getDataUrl () {
+      this.dataUrl = this.urlSet
+      if (this.$store.state.memberShipStatus === 'levis') this.dataUrl = this.dataUrl.levis
+      else if (this.$store.state.memberShipStatus === 'happyCharge') this.dataUrl = this.dataUrl.happyCharge
+
+      if (this.membershipSelected === 'visit') {
+        this.dataUrl = this.dataUrl.timeSeriesVisitUrl
+      } else {
+        this.dataUrl = this.dataUrl.timeSeriesMemberUrl
+      }
+      console.log(this.$store.state.memberShipStatus + ' : ' + this.dataUrl)
+    },
     initData () {
       this.dataTotal = []
       this.dataPause = []
@@ -99,6 +117,7 @@ export default {
     },
     getTimeSeriesData (url) {
       fetch(url).then((resp) => resp.json()).then(response => {
+        this.initData()
         const size = response.data.length
         for (var i = 0; i < size; i++) {
           this.dataTotal.push(response.data[i].total)
@@ -108,10 +127,12 @@ export default {
           this.dateList.push(response.data[i].date)
         }
         this.makeDataCollection()
+        this.makeOption()
       })
     },
+    // 전달할 dataSet 구성
     makeDataCollection () {
-      this.datacollection = {
+      this.dataCollection = {
         labels: this.dateList,
         datasets: [
           {
@@ -135,7 +156,7 @@ export default {
             backgroundColor: 'transparent',
             borderColor: brandDanger,
             pointHoverBackgroundColor: '#fff',
-            borderWidth: 1,
+            borderWidth: 2,
             borderDash: [2, 2],
             data: this.dataWithdraw
           },
@@ -144,11 +165,44 @@ export default {
             backgroundColor: 'transparent',
             borderColor: brandDanger,
             pointHoverBackgroundColor: '#fff',
-            borderWidth: 1,
+            borderWidth: 2,
             borderDash: [2, 2],
             data: this.dataNew
           }
         ]
+      }
+    },
+    makeOption () {
+      this.dataOptions = {
+        maintainAspectRatio: false,
+        legend: {
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              drawOnChartArea: false
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 100,
+              stepSize: Math.ceil(2000 / 5),
+              max: 2000
+            },
+            gridLines: {
+              display: true
+            }
+          }]
+        },
+        elements: {
+          point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3
+          }
+        }
       }
     }
   }
