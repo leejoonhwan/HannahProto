@@ -1,5 +1,5 @@
 <template>
-  <b-card no-body class="bg-primary">
+  <b-card no-body :class="bg">
     <b-card-body class="pb-2">
       <h4 class="mb-1">{{ this.config[dataType].title }}</h4>
       <h6 class="mb-0">{{ this.config[dataType].desc }}</h6>
@@ -17,7 +17,7 @@ export default {
   components: {
     BarTopHalfChart
   },
-  props: ['data-type'],
+  props: ['data-type', 'bg'],
   data () {
     return {
       config: {
@@ -41,7 +41,7 @@ export default {
         datasets: [{
           label: 'Data11',
           backgroundColor: ['rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,55,55,.3)', 'rgba(255,55,55,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,55,55,.3)', 'rgba(255,55,55,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)'],
-          borderColor: ['transparent', 'rgba(105,205,205,.9)', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'],
+          borderColor: 'transparent',
           yAxisID: 'left-y-axis',
           data: [30, 22, 24, 35, 30, 34, 56, 74, 22, 17, 32, 58, 54, 62]
         },

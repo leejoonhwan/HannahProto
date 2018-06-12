@@ -10,10 +10,10 @@
           <!--</b-card-body>-->
           <!--<bar-top-half class="chart-wrapper px-3" style="height:140px;" :apiUrl='getMemberCount' />-->
         <!--</b-card>-->
-        <bar-top-half data-type="member-count"></bar-top-half>
+        <bar-top-half data-type="member-count" bg="bg-primary"></bar-top-half>
       </b-col>
       <b-col sm="6" lg="6">
-        <bar-top-half data-type="visit-count"></bar-top-half>
+        <bar-top-half data-type="visit-count" bg="bg-info"></bar-top-half>
       </b-col>
     </b-row>
     <b-card>
