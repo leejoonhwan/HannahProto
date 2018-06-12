@@ -1,11 +1,11 @@
 <template>
   <b-card no-body class="bg-primary">
     <b-card-body class="pb-2">
-      <h4 class="mb-1">멤버십 회원 / Members</h4>
-      <h6 class="mb-0">누적 13,333명 (+134 명)</h6>
+      <h4 class="mb-1">{{ this.config[dataType].title }}</h4>
+      <h6 class="mb-0">{{ this.config[dataType].desc }}</h6>
       <h6 class="mb-2">4/29 기준</h6>
     </b-card-body>
-    <bar-top-half-chart class="chart-wrapper px-3" style="height:140px;" :apiUrl='getMemberCount' />
+    <bar-top-half-chart class="chart-wrapper px-3" style="height:140px;" :chartData='chartData' />
   </b-card>
 </template>
 
@@ -17,9 +17,43 @@ export default {
   components: {
     BarTopHalfChart
   },
+  props: ['data-type'],
   data () {
     return {
-      getMemberCount: '/static/dummy/getMemberCount'
+      config: {
+        'member-count': {
+          title: '멤버십 회원 / Members',
+          desc: '누적 %s명 (%s명)',
+          api: '/static/dummy/getMemberCount'
+        },
+        'visit-count': {
+          title: '멤버십 방문 / Visits',
+          desc: '당일 345건 (+34 명)',
+          api: '/static/dummy/getMemberVisitCount'
+        }
+      }
+    }
+  },
+  computed: {
+    chartData () {
+      return {
+        labels: ['5/15', '5/16', '5/17', '5/18', '5/19', '5/20', '5/21', '5/22', '5/23', '5/24', '5/25', '', '', ''],
+        datasets: [{
+          label: 'Data11',
+          backgroundColor: ['rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,55,55,.3)', 'rgba(255,55,55,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,55,55,.3)', 'rgba(255,55,55,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)', 'rgba(255,255,255,.3)'],
+          borderColor: ['transparent', 'rgba(105,205,205,.9)', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'],
+          yAxisID: 'left-y-axis',
+          data: [30, 22, 24, 35, 30, 34, 56, 74, 22, 17, 32, 58, 54, 62]
+        },
+        {
+          label: 'Data12',
+          backgroundColor: 'transparent', // 'rgba(255,255,255,.3)',
+          borderColor: 'rgba(255,255,255,.5)',
+          yAxisID: 'right-y-axis',
+          type: 'line',
+          data: [1130, 1122, 1214, 1315, 1350, 1374, 1416, 1514, 1622, 1617, 1732, 1758, 1854, 1862]
+        }]
+      }
     }
   }
 }

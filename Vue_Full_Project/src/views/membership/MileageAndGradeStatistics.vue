@@ -10,17 +10,10 @@
           <!--</b-card-body>-->
           <!--<bar-top-half class="chart-wrapper px-3" style="height:140px;" :apiUrl='getMemberCount' />-->
         <!--</b-card>-->
-        <bar-top-half type="member-count"></bar-top-half>
+        <bar-top-half data-type="member-count"></bar-top-half>
       </b-col>
       <b-col sm="6" lg="6">
-        <b-card no-body class="bg-info">
-          <b-card-body class="pb-2">
-            <h4 class="mb-1">멤버십 방문 / Visits</h4>
-            <h6 class="mb-0">당일 345건 (+34 명)</h6>
-            <h6 class="mb-2">4/29 기준</h6>
-          </b-card-body>
-          <bar-top-half-chart class="chart-wrapper px-3" style="height:140px;" :apiUrl='getVisitCount' />
-        </b-card>
+        <bar-top-half data-type="visit-count"></bar-top-half>
       </b-col>
     </b-row>
     <b-card>
@@ -88,15 +81,10 @@
 <style scoped>
 </style>
 <script>
-import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
-import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
-import CardLine3ChartExample from '../dashboard/CardLine3ChartExample'
+
 import BarTopHalf from '../common/BarTopHalf'
 import BarTopHalfChart from '../common/charts/BarTopHalfChart'
 import MainChartExample from '../dashboard/MainChartExample'
-import SocialBoxChartExample from '../dashboard/SocialBoxChartExample'
-import CalloutChartExample from '../dashboard/CalloutChartExample'
-import { Callout } from '../../components/'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AgeGenderChart from '../common/charts/AgeGenderChart'
 import cTable from '../dashboard/Table.vue'
@@ -105,15 +93,9 @@ import cTable from '../dashboard/Table.vue'
 export default {
   name: 'memberStatistics',
   components: {
-    Callout,
-    CardLine1ChartExample,
-    CardLine2ChartExample,
-    CardLine3ChartExample,
     BarTopHalf,
     BarTopHalfChart,
     MainChartExample,
-    SocialBoxChartExample,
-    CalloutChartExample,
     DatePicker,
     cTable,
     AgeGenderChart
