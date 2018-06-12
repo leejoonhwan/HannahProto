@@ -30,14 +30,12 @@
 import MainChartExample from '../dashboard/MainChartExample'
 import RandomChart from '../dashboard/RandomChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
-import action from '../../api/index'
 import store from '../../vuex/store'
 const brandSuccess = '#4dbd74'
 const brandInfo = '#63c2de'
 const brandDanger = '#f86c6b'
 export default {
   name: 'MemberTimeseriesComponent',
-  action,
   components: {
     MainChartExample,
     DatePicker,

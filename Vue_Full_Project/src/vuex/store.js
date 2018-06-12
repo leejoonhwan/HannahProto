@@ -1,20 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import getters from './getters'
-import actions from './actions'
-import mutations from './mutations'
 // import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 const state = {
-  membershipLists: [],
-  memberShipStatus: '',
-  itemLists: []
+  membershipLists: [
+    { value: 'happyCharge', text: '행복충전' },
+    { value: 'levis', text: '리바이스' }],
+  memberShipStatus: 'happyCharge',
+  id: 'niip00ng@daum.net',
+  name: '이준환'
 }
 
 export default new Vuex.Store({
-  state,
-  mutations,
-  getters,
-  actions
+  state
 })
