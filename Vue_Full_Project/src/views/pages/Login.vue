@@ -50,9 +50,7 @@
 
 <script>
 import store from '../../vuex/store'
-import { mapActions } from 'vuex'
 
-// vuex 함수와 일반 함수를 동시에 사용하여 로그인 사용자 정보를 store 저장
 export default {
   name: 'Login',
   store,
@@ -63,10 +61,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateLoginInfo', 'updateMembershipStatus']),
     moveDashboard (loginId, password) {
-      this.updateLoginInfo({loginId, password})
-      this.updateMembershipStatus('happyCharge')
+      console.log(loginId, password)
       this.$router.push('../../dashboard')
     }
   }
