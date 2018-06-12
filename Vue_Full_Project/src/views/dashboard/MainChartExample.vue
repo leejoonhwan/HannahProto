@@ -21,6 +21,9 @@ export default {
     console.log(this.options)
     this.drawChart()
   },
+  updated () {
+    console.log(12312312321)
+  },
   methods: {
     drawChart () {
       this.renderChart(this.chartData, this.options)

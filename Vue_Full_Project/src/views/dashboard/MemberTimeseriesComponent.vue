@@ -54,8 +54,6 @@ export default {
       dataWithdraw: [],
       dataNew: [],
       dateList: [],
-      dataOptions: null,
-      dataCollection: null,
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
@@ -74,25 +72,30 @@ export default {
   },
   created () {
     console.log('MemberTimeseriesComponent created')
-    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
+    this.dataUrl = '/static/dummy/getHappyChargeTimeSeriesMember'
+    //this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   mounted () {
     console.log('MemberTimeseriesComponent mounted')
-    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
+    this.dataUrl = '/static/dummy/getHappyChargeTimeSeriesMember'
+    //this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   updated () {
     console.log('updated')
   },
   computed: {
-    membershipIndex () {
-      return this.$store.state.memberShipStatus
-    }
-  },
-  watch: {
-    membershipIndex (val) {
-      console.log('watched: ', val)
+    dataCollection () {
       this.getDataUrl()
-      this.getTimeSeriesData(this.dataUrl)
+      // this.getTimeSeriesData(this.dataUrl)
+      console.log('dataCollection')
+      // this
+      return this.getTimeSeriesData(this.dataUrl)
+    },
+    dataOptions () {
+      console.log('dataOptions')
+      // this.getDataUrl()
+      // this.getTimeSeriesData(this.dataUrl)*/
+      return this.makeOption()
     }
   },
   methods: {
@@ -126,13 +129,12 @@ export default {
           this.dataNew.push(response.data[i].join)
           this.dateList.push(response.data[i].date)
         }
-        this.makeDataCollection()
-        this.makeOption()
+        return this.makeDataCollection()
       })
     },
     // 전달할 dataSet 구성
     makeDataCollection () {
-      this.dataCollection = {
+      var collection = {
         labels: this.dateList,
         datasets: [
           {
@@ -171,9 +173,10 @@ export default {
           }
         ]
       }
+      return collection
     },
     makeOption () {
-      this.dataOptions = {
+      var options = {
         maintainAspectRatio: false,
         legend: {
         },
@@ -204,6 +207,7 @@ export default {
           }
         }
       }
+      return options
     }
   }
 }
