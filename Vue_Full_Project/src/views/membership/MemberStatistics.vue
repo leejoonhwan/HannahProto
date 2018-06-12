@@ -2,14 +2,7 @@
   <div class="animated fadeIn">
     <b-row>
       <b-col sm="6" lg="6">
-        <b-card no-body class="bg-primary">
-          <b-card-body class="pb-2">
-            <h4 class="mb-1">멤버십 회원 / Members</h4>
-            <h6 class="mb-0">누적 13,333명 (+134 명)</h6>
-            <h6 class="mb-2">4/29 기준</h6>
-          </b-card-body>
-          <member-card-bar-chart class="chart-wrapper px-3" style="height:70px;" height="70"/>
-        </b-card>
+        <member-card-mix-chart></member-card-mix-chart>
       </b-col>
       <b-col sm="6" lg="6">
         <b-card no-body class="bg-info">
@@ -31,7 +24,7 @@
 <script>
 import MemberTimeseriesComponent from '../dashboard/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
-import MemberCardBarChart from '../dashboard/MemberCardBarChart'
+import MemberCardMixChart from '../dashboard/MemberCardMixChart'
 import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
 import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
@@ -58,7 +51,7 @@ export default {
     DatePicker,
     cTable,
     AmchartExample,
-    MemberCardBarChart,
+    MemberCardMixChart,
     MemberVisitCardBarChart,
     MemberGenderAgeComponent,
     MemberTimeseriesComponent

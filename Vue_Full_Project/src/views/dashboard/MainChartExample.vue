@@ -11,18 +11,11 @@ export default {
     }
   },
   created () {
-    console.log('MainChart created')
-    console.log(this.chartData)
-    console.log(this.options)
   },
   mounted () {
-    console.log('MainChart mounted')
-    console.log(this.chartData)
-    console.log(this.options)
     this.drawChart()
   },
   updated () {
-    console.log(12312312321)
   },
   methods: {
     drawChart () {

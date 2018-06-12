@@ -71,15 +71,12 @@ export default {
     }
   },
   created () {
-    console.log('MemberTimeseriesComponent created')
     this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   mounted () {
-    console.log('MemberTimeseriesComponent mounted')
     this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   updated () {
-    console.log('updated')
   },
   computed: {
     membershipIndex () {
@@ -88,7 +85,6 @@ export default {
   },
   watch: {
     membershipIndex (val) {
-      console.log('watched: ', val)
       this.getDataUrl()
       this.getTimeSeriesData(this.dataUrl)
     }
@@ -103,7 +99,6 @@ export default {
       } else {
         this.dataUrl = this.dataUrl.timeSeriesMemberUrl
       }
-      console.log(this.$store.state.memberShipStatus + ' : ' + this.dataUrl)
     },
     initData () {
       this.dataTotal = []
