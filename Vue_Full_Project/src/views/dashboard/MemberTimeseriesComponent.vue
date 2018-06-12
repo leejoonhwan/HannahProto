@@ -32,11 +32,9 @@ import RandomChart from '../dashboard/RandomChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import action from '../../api/index'
 import store from '../../vuex/store'
-
 const brandSuccess = '#4dbd74'
 const brandInfo = '#63c2de'
 const brandDanger = '#f86c6b'
-
 export default {
   name: 'MemberTimeseriesComponent',
   action,
@@ -54,6 +52,8 @@ export default {
       dataWithdraw: [],
       dataNew: [],
       dateList: [],
+      dataOptions: null,
+      dataCollection: null,
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
@@ -72,30 +72,25 @@ export default {
   },
   created () {
     console.log('MemberTimeseriesComponent created')
-    this.dataUrl = '/static/dummy/getHappyChargeTimeSeriesMember'
-    //this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
+    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   mounted () {
     console.log('MemberTimeseriesComponent mounted')
-    this.dataUrl = '/static/dummy/getHappyChargeTimeSeriesMember'
-    //this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
+    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
   },
   updated () {
     console.log('updated')
   },
   computed: {
-    dataCollection () {
+    membershipIndex () {
+      return this.$store.state.memberShipStatus
+    }
+  },
+  watch: {
+    membershipIndex (val) {
+      console.log('watched: ', val)
       this.getDataUrl()
-      // this.getTimeSeriesData(this.dataUrl)
-      console.log('dataCollection')
-      // this
-      return this.getTimeSeriesData(this.dataUrl)
-    },
-    dataOptions () {
-      console.log('dataOptions')
-      // this.getDataUrl()
-      // this.getTimeSeriesData(this.dataUrl)*/
-      return this.makeOption()
+      this.getTimeSeriesData(this.dataUrl)
     }
   },
   methods: {
@@ -103,7 +98,6 @@ export default {
       this.dataUrl = this.urlSet
       if (this.$store.state.memberShipStatus === 'levis') this.dataUrl = this.dataUrl.levis
       else if (this.$store.state.memberShipStatus === 'happyCharge') this.dataUrl = this.dataUrl.happyCharge
-
       if (this.membershipSelected === 'visit') {
         this.dataUrl = this.dataUrl.timeSeriesVisitUrl
       } else {
@@ -129,12 +123,13 @@ export default {
           this.dataNew.push(response.data[i].join)
           this.dateList.push(response.data[i].date)
         }
-        return this.makeDataCollection()
+        this.makeDataCollection()
+        this.makeOption()
       })
     },
     // 전달할 dataSet 구성
     makeDataCollection () {
-      var collection = {
+      this.dataCollection = {
         labels: this.dateList,
         datasets: [
           {
@@ -173,10 +168,9 @@ export default {
           }
         ]
       }
-      return collection
     },
     makeOption () {
-      var options = {
+      this.dataOptions = {
         maintainAspectRatio: false,
         legend: {
         },
@@ -207,12 +201,10 @@ export default {
           }
         }
       }
-      return options
     }
   }
 }
 </script>
 
 <style scoped>
-
 </style>
