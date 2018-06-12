@@ -2,14 +2,6 @@
   <div class="animated fadeIn">
     <b-row>
       <b-col sm="6" lg="6">
-        <!--<b-card no-body class="bg-primary">-->
-          <!--<b-card-body class="pb-2">-->
-            <!--<h4 class="mb-1">멤버십 회원 / Members</h4>-->
-            <!--<h6 class="mb-0">누적 13,333명 (+134 명)</h6>-->
-            <!--<h6 class="mb-2">4/29 기준</h6>-->
-          <!--</b-card-body>-->
-          <!--<bar-top-half class="chart-wrapper px-3" style="height:140px;" :apiUrl='getMemberCount' />-->
-        <!--</b-card>-->
         <bar-top-half data-type="member-count" bg="bg-primary"></bar-top-half>
       </b-col>
       <b-col sm="6" lg="6">
