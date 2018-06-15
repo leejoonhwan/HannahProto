@@ -20,7 +20,7 @@ export default {
   props: ['componentName'],
   data () {
     return {
-      url: '/static/dummy/CardMixHappyChargeData',
+      url: '',
       dataOptions: null,
       dataCollection: null,
       date: '',
@@ -54,16 +54,16 @@ export default {
   },
   watch: {
     membershipIndex (val) {
-      this.getMemberCountData(this.url)
       this.getDataUrl(val)
+      this.getMemberCountData(this.url)
     }
   },
   created () {
-    console.log('CardChartComponent created')
+    this.getDataUrl(this.membershipIndex)
     this.getMemberCountData(this.url)
   },
   mounted () {
-    console.log('CardChartComponent Name : ' + this.componentName)
+    this.getDataUrl(this.membershipIndex)
     this.getMemberCountData(this.url)
   },
   methods: {

@@ -27,7 +27,7 @@
   </b-card>
 </template>
 <script>
-import MainChartExample from '../dashboard/MainChartExample'
+import MainChartExample from '../common/charts/MainChartExample'
 import RandomChart from '../dashboard/RandomChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import store from '../../vuex/store'

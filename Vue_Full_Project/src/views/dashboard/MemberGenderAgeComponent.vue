@@ -27,7 +27,7 @@
       </b-col>
       <b-col sm="6" lg="4">
         <br><br>
-        <member-gender-age-table small caption="<i class='fa fa-align-justify'></i> Condensed Table" ref="childTableComponent"></member-gender-age-table>
+        <member-gender-age-table small caption="<i class='fa fa-align-justify'></i> Condensed Table"/>
       </b-col>
     </b-row>
   </b-card>
@@ -38,7 +38,6 @@ import AmchartExample from '../dashboard/AmchartExample'
 import MemberGenderAgeTable from '../dashboard/MemberGenderAgeTable.vue'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import 'amcharts3'
-import store from '../../vuex/store'
 
 export default {
   name: 'MemberGenderAgeComponent',
@@ -47,43 +46,47 @@ export default {
     AmchartExample,
     DatePicker
   },
-  store,
   data () {
     return {
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
-      value3: new Date()
+      value3: new Date(),
+      url: ''
+    }
+  },
+  computed: {
+    membershipIndex () {
+      return this.$store.state.memberShipStatus
+    }
+  },
+  watch: {
+    membershipIndex (val) {
+      this.getDataUrl(val)
+      this.getGenderAgeData(this.url)
     }
   },
   mounted () {
-    this.getGenderAgeData('/static/dummy/getMemberGenderAge')
-    this.getGenderAgeTableData('/static/dummy/getMemberGenderAgeTable')
+    this.getDataUrl(this.membershipIndex)
+    this.getGenderAgeData(this.url)
   },
   updated () {
-    var urlChartData = ''
-    var urlTableData = ''
-
-    if (this.membershipSelected === 'visit') {
-      urlChartData = '/static/dummy/getMemberVisitGenderAge'
-      urlTableData = '/static/dummy/getMemberVisitGenderAgeTable'
-    } else {
-      urlChartData = '/static/dummy/getMemberGenderAge'
-      urlTableData = '/static/dummy/getMemberGenderAgeTable'
-    }
-    this.getGenderAgeData(urlChartData)
-    this.getGenderAgeTableData(urlTableData)
   },
   methods: {
-    getGenderAgeTableData (url) {
-      fetch(url).then((resp) => resp.json()).then(response => {
-        this.$refs.childTableComponent.items = response
-      })
+    getDataUrl (val) {
+      if (val === 'levis') this.url = '/static/dummy/getLevisGenderAge'
+      else if (val === 'happyCharge') this.url = '/static/dummy/getHappyChargeGenderAge'
     },
     getGenderAgeData (url) {
       fetch(url).then((resp) => resp.json()).then(response => {
+        // amchart 그리기
         this.drawAmchart(response)
+        // 테이블 데이터 만들기
+        this.makeTableData(response)
       })
+    },
+    makeTableData (data) {
+
     },
     drawAmchart (configData) {
       var configs = {

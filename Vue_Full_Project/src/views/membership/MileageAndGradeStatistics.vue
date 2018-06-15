@@ -76,7 +76,7 @@
 
 import BarTopHalf from '../common/BarTopHalf'
 import BarTopHalfChart from '../common/charts/BarTopHalfChart'
-import MainChartExample from '../dashboard/MainChartExample'
+import MainChartExample from '../common/charts/MainChartExample'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AgeGenderChart from '../common/charts/AgeGenderChart'
 import cTable from '../dashboard/Table.vue'
