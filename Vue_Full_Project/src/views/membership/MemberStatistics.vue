@@ -2,17 +2,10 @@
   <div class="animated fadeIn">
     <b-row>
       <b-col sm="6" lg="6">
-        <member-card-mix-chart></member-card-mix-chart>
+        <CardChartComponent componentName="memberCount"></CardChartComponent>
       </b-col>
       <b-col sm="6" lg="6">
-        <b-card no-body class="bg-info">
-          <b-card-body class="pb-2">
-            <h4 class="mb-1">멤버십 방문 / Visits</h4>
-            <h6 class="mb-0">당일 345건 (+34 명)</h6>
-            <h6 class="mb-2">4/29 기준</h6>
-          </b-card-body>
-          <member-visit-card-bar-chart class="chart-wrapper px-3" style="height:70px;" height="70"/>
-        </b-card>
+        <CardChartComponent componentName="memberVisit"></CardChartComponent>
       </b-col>
     </b-row>
     <member-timeseries-component></member-timeseries-component>
@@ -24,7 +17,7 @@
 <script>
 import MemberTimeseriesComponent from '../dashboard/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
-import MemberCardMixChart from '../dashboard/MemberCardMixChart'
+import CardChartComponent from '../common/CardChartComponent'
 import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
 import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
@@ -51,7 +44,7 @@ export default {
     DatePicker,
     cTable,
     AmchartExample,
-    MemberCardMixChart,
+    CardChartComponent,
     MemberVisitCardBarChart,
     MemberGenderAgeComponent,
     MemberTimeseriesComponent
