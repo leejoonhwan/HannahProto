@@ -38,18 +38,11 @@ export default {
     fixed: {
       type: Boolean,
       default: false
-    }
+    },
+    items: {}
   },
   data: () => {
     return {
-      items: [
-        {rank: 1, age: '여자 30~39', percent: '19%'},
-        {rank: 2, age: '여자 30~39', percent: '17%'},
-        {rank: 3, age: '여자 30~39', percent: '14%'},
-        {rank: 4, age: '남자 30~39', percent: '10%'},
-        {rank: 5, age: '남자 30~39', percent: '10%'},
-        {rank: 6, age: '남자 30~39', percent: '6%'}
-      ],
       fields: [
         {key: 'rank'},
         {key: 'age'},
@@ -67,8 +60,8 @@ export default {
           : status === 'Pending' ? 'warning'
             : status === 'Banned' ? 'danger' : 'primary'
     },
-    getRowCount (items) {
-      return items.length
+    getRowCount () {
+      return this.items.length
     }
   }
 }

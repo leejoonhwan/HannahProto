@@ -27,7 +27,7 @@
       </b-col>
       <b-col sm="6" lg="4">
         <br><br>
-        <member-gender-age-table small caption="<i class='fa fa-align-justify'></i> Condensed Table"/>
+        <member-gender-age-table small caption="<i class='fa fa-align-justify'></i> Condensed Table" :items="tableData"/>
       </b-col>
     </b-row>
   </b-card>
@@ -52,7 +52,13 @@ export default {
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
       value3: new Date(),
-      url: ''
+      url: '',
+      tableData: [{
+        rank: 0,
+        age: '',
+        percent: 0
+      }
+      ]
     }
   },
   computed: {
@@ -86,7 +92,27 @@ export default {
       })
     },
     makeTableData (data) {
+      var list = []
+      for (let i in data) {
+        var male = {}
+        var female = {}
+        male.age = '남자 ' + data[i].age
+        male.percent = data[i].male * -1
+        female.age = '여자 ' + data[i].age
+        female.percent = data[i].female
 
+        list.push(male)
+        list.push(female)
+      }
+      list.sort(function (a, b) {
+        return a.percent > b.percent ? -1 : a.percent < b.percent ? 1 : 0
+      })
+      list.splice(6, list.length)
+
+      for (let i in list) list[i].rank = Number(i) + 1
+
+      console.log(list)
+      this.tableData = list
     },
     drawAmchart (configData) {
       var configs = {
