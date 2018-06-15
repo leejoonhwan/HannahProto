@@ -35,9 +35,14 @@ export default {
       chartData: {}
     }
   },
+  computed: {
+    selectedMembershipId () {
+      return this.$store.state.memberShipStatus
+    }
+  },
   methods: {
-    getChartData () {
-      fetch(this.config[this.dataType].api)
+    getChartData (selectedMembershipId) {
+      fetch(this.config[this.dataType].api + '_' + selectedMembershipId)
         .then(res => res.json())
         .then(response => {
           this.chartData = this.makeChartData(response)
@@ -73,7 +78,12 @@ export default {
     }
   },
   created () {
-    this.getChartData()
+    this.getChartData(this.selectedMembershipId)
+  },
+  watch: {
+    selectedMembershipId (val) {
+      this.getChartData(val)
+    }
   }
 }
 </script>
