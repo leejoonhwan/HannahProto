@@ -20,7 +20,6 @@ export default {
   props: ['data-type', 'bg'],
   data () {
     return {
-      fetchedData: {},
       config: {
         'member-count': {
           title: '멤버십 회원 / Members',
@@ -37,6 +36,13 @@ export default {
     }
   },
   methods: {
+    getChartData () {
+      fetch(this.config[this.dataType].api)
+        .then(res => res.json())
+        .then(response => {
+          this.chartData = this.makeChartData(response)
+        })
+    },
     makeChartData (rawJson) {
       let result = {
         labels: [],
@@ -67,12 +73,7 @@ export default {
     }
   },
   created () {
-    fetch(this.config[this.dataType].api)
-      .then(res => res.json())
-      .then(response => {
-        // this.fetchedData = response
-        this.chartData = this.makeChartData(response)
-      })
+    this.getChartData()
   }
 }
 </script>
