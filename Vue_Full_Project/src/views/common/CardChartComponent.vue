@@ -5,7 +5,7 @@
       <h6 class="mb-0">{{totalLable}} {{mainCount}}{{unitName}} (+{{subCount}}{{unitName}} )</h6>
       <h6 class="mb-2">{{date}}</h6>
     </b-card-body>
-    <CardMixChart class="chart-wrapper px-3" style="height:70px;" height="70"/>
+    <CardMixChart class="chart-wrapper px-3" style="height:70px;" height="70" :chart-data="dataCollection" :options="dataOptions"/>
   </b-card>
 </template>
 
@@ -20,9 +20,7 @@ export default {
   props: ['componentName'],
   data () {
     return {
-      url: 'http://localhost:3000',
-      params: {
-      },
+      url: '/static/dummy/CardMixHappyChargeData',
       dataOptions: null,
       dataCollection: null,
       date: '',
@@ -56,48 +54,43 @@ export default {
   },
   watch: {
     membershipIndex (val) {
+      this.getMemberCountData(this.url)
+      this.getDataUrl(val)
     }
   },
   created () {
     console.log('CardChartComponent created')
+    this.getMemberCountData(this.url)
   },
   mounted () {
     console.log('CardChartComponent Name : ' + this.componentName)
-    this.params.membership = this.membershipIndex
-    this.params.apiName = this.componentName
-
-    this.getMemberCountData(this.url, this.params)
+    this.getMemberCountData(this.url)
   },
   methods: {
-    getMemberCountData (url, params) {
-      fetch(url, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(params)
-      }).then((res) => res.json())
-        .then((response) => {
-          var size = response.data.length
+    getDataUrl (val) {
+      if (val === 'levis') this.url = '/static/dummy/CardMixLevisData'
+      else if (val === 'happyCharge') this.url = '/static/dummy/CardMixHappyChargeData'
+    },
+    getMemberCountData (url) {
+      fetch(url).then((resp) => resp.json()).then((response) => {
+        var size = response.data.length
 
-          var labels = []
-          var data = []
+        var labels = []
+        var data = []
 
-          for (var i = 0; i < size; i++) {
-            labels.push(response.data[i].date)
-            data.push(response.data[i].cnt)
-          }
+        for (var i = 0; i < size; i++) {
+          labels.push(response.data[i].date)
+          data.push(response.data[i].cnt)
+        }
+        this.mainCount = response.total
+        this.subCount = response.data[size - 1].cnt
 
-          this.mainCount = response.total
-          this.subCount = response.data[size - 1].cnt
+        // 넘길 데이터 만들기
+        this.makeMixChartData(labels, data)
 
-          // 넘길 데이터 만들기
-          this.makeMixChartData(labels, data)
-
-          // 넘길 옵션 만들기
-          this.makeMixChartOption()
-        })
+        // 넘길 옵션 만들기
+        this.makeMixChartOption()
+      })
     },
     makeMixChartData (labels, data) {
       this.dataCollection = {
@@ -115,12 +108,35 @@ export default {
           borderColor: 'rgba(255,255,255,.5)',
           yAxisID: 'right-y-axis',
           type: 'line',
-          data: [1130, 1122, 1214, 1315, 1350, 1374, 1416, 1514, 1622, 1617, 1732, 1758, 1854, 1862]
+          data: data
         }]
       }
     },
     makeMixChartOption () {
-
+      this.dataOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: false,
+            categoryPercentage: 1,
+            barPercentage: 0.5
+          }],
+          yAxes: [{
+            id: 'left-y-axis',
+            display: false
+          }, {
+            id: 'right-y-axis',
+            display: false,
+            ticks: {
+              min: 0
+            }
+          }]
+        }
+      }
     }
   }
 }

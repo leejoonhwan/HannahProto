@@ -25,8 +25,10 @@ http.createServer(function (req, res) {
         resultJson = happyCharge.getJsonData()
       }
     }
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+
+    res.headers('Access-Control-Allow-Origin', '*')
+    res.headers('Access-Control-Allow-Headers', 'X-Requested-With')
+    res.headers('Access-Control-Allow-Credentials', 'true')
     res.writeHead(200, {'Content-Type': 'application/json'})
     console.log(JSON.stringify(resultJson))
     res.end(JSON.stringify(resultJson))
