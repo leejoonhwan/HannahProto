@@ -1,0 +1,104 @@
+{
+    "title": "마일리지 이용",
+    "count": 14,
+    "data": [
+        {
+            "date": "2018-05-14",
+            "wday": "Thursday",
+            "user": 332,
+            "save_pt": 34456,
+            "used_pt": 13456
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Friday",
+            "user": 304,
+            "save_pt": 25677,
+            "used_pt": 17565
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Saturday",
+            "user": 421,
+            "save_pt": 46677,
+            "used_pt": 25567
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Sunday",
+            "user": 456,
+            "save_pt": 57788,
+            "used_pt": 22344
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Monday",
+            "user": 301,
+            "save_pt": 34676,
+            "used_pt": 6644
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Tuesday",
+            "user": 256,
+            "save_pt": 23455,
+            "used_pt": 7765
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Wednsday",
+            "user": 367,
+            "save_pt": 35788,
+            "used_pt": 13466
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Thursday",
+            "user": 335,
+            "save_pt": 36898,
+            "used_pt": 23456
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Friday",
+            "user": 390,
+            "save_pt": 45726,
+            "used_pt": 23456
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Saturday",
+            "user": 432,
+            "save_pt": 53456,
+            "used_pt": 33456
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Sunday",
+            "user": 448,
+            "save_pt": 52134,
+            "used_pt": 26678
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Monday",
+            "user": 318,
+            "save_pt": 23466,
+            "used_pt": 5623
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Tuesday",
+            "user": 365,
+            "save_pt": 32722,
+            "used_pt": 12346
+        },
+        {
+            "date": "2018-05-14",
+            "wday": "Wednsday",
+            "user": 344,
+            "save_pt": 47889,
+            "used_pt": 23488
+        }
+    ]
+}
