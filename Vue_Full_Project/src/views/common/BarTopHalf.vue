@@ -30,6 +30,16 @@ export default {
           title: '멤버십 방문 / Visits',
           desc: '당일 345건 (+34 명)',
           api: '/static/dummy/getMemberVisitCount'
+        },
+        'mileage-save': {
+          title: '마일리지 적립',
+          desc: '당월 누적 1,553,322 PT (당일 225,423 PT)',
+          api: '/static/dummy/getMemberCount'
+        },
+        'mileage-use': {
+          title: '마일리지 사용',
+          desc: '당월 누적 1,000,123 PT (당일 100,235 PT)',
+          api: '/static/dummy/getMemberVisitCount'
         }
       },
       chartData: {}
