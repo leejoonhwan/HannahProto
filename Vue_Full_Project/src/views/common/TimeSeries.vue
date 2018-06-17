@@ -1,0 +1,148 @@
+<template>
+  <b-card>
+    <b-row>
+      <b-col sm="7">
+        <h4 id="traffic" class="card-title mb-0">시계열 / Time Series</h4>
+      </b-col>
+      <b-col sm="1">
+        <b-form-select id="basicSelectLg" :options="['멤버십 회원']" value="멤버십 회원"/>
+      </b-col>
+      <b-col sm="1">
+        <b-form-select id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
+      </b-col>
+      <b-col sm="2">
+        <date-picker v-model="value3" range lang="en"></date-picker>
+      </b-col>
+      <b-col >
+        <i class="fa fa-refresh fa-2x mt-1" style="color: #3b5998"></i>
+      </b-col>
+      <b-col >
+        <i class="fa fa-download fa-2x mt-1" style="color: #7ab800" ></i>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col sm="5">
+      </b-col>
+    </b-row>
+    <time-series-chart class="chart-wrapper" style="height:300px;margin-top:40px;" height="300" :chartData='chartData'></time-series-chart>
+  </b-card>
+</template>
+
+<script>
+import TimeSeriesChart from './charts/TimeSeriesChart'
+import DatePicker from '../../../node_modules/vue2-datepicker/index'
+
+const brandSuccess = '#4dbd74'
+const brandInfo = '#63c2de'
+const brandDanger = '#f86c6b'
+
+export default {
+  name: 'TimeSeries',
+  components: {
+    TimeSeriesChart,
+    DatePicker
+  },
+  props: ['data-type'],
+  data () {
+    return {
+      config: {
+        'member': {
+          title: '멤버십 가입/방문 시계열 통계',
+          showDataSelector: true,
+          showUnitSelector: true,
+          showDatePicker: true,
+          api: '/static/dummy/CardMixHappyChargeData',
+          legends: {
+            accum: '누적 가입 회원수',
+            join: '신규 회원수',
+            dormant: '휴면 회원수',
+            leave: '탈퇴 회원수',
+            visitRatio: '방문 회원수 비율',
+            visitCount: '방문 건수',
+            visitMember: '방문 회원수'
+          }
+        },
+        'mileage': {
+          title: '마일리지 이용 시계열 통계',
+          showDataSelector: false,
+          showUnitSelector: true,
+          showDatePicker: true,
+          api: '/static/dummy/getTimeSeries_mileage',
+          legends: {
+            user: '마일리지 이용 회원수(명)',
+            save_pt: '마일리지 적립 포인트(PT)',
+            used_pt: '마일리지 사용 포인트(PT)'
+          }
+        }
+      },
+      chartData: {}
+    }
+  },
+  methods: {
+    getChartData (selectedMembershipId) {
+      fetch(this.config[this.dataType].api + '_' + selectedMembershipId)
+        .then(res => res.json())
+        .then(response => {
+          this.chartData = this.makeChartData(response)
+        })
+    },
+    makeChartData (rawJson) {
+      let result = {
+        labels: [],
+        datasets: [
+          {
+            label: '',
+            backgroundColor: 'transparent',
+            borderColor: brandInfo,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: []
+          }, {
+            label: '',
+            backgroundColor: 'transparent',
+            borderColor: brandSuccess,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: []
+          }, {
+            label: '',
+            backgroundColor: 'transparent',
+            borderColor: brandDanger,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            borderDash: [2, 2],
+            data: []
+          }]
+      }
+      for (let d of rawJson.data) {
+        result.labels.push(d.date)
+        result.datasets[0].label = this.config[this.dataType].legends['accum']
+        result.datasets[0].data.push(d.user)
+        result.datasets[1].label = this.config[this.dataType].legends['save_pt']
+        result.datasets[1].data.push(d.save_pt)
+        result.datasets[2].label = this.config[this.dataType].legends['used_pt']
+        result.datasets[2].data.push(d.used_pt)
+      }
+      console.log(result)
+      return result
+    }
+  },
+  created () {
+    this.getChartData(this.selectedMembershipId)
+  },
+  computed: {
+    selectedMembershipId () {
+      return this.$store.state.memberShipStatus
+    }
+  },
+  watch: {
+    selectedMembershipId (val) {
+      this.getChartData(val)
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
