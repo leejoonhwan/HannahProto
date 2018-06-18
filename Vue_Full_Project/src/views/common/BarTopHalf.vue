@@ -20,7 +20,6 @@ export default {
   props: ['data-type', 'bg'],
   data () {
     return {
-      fetchedData: {},
       config: {
         'member-count': {
           title: '멤버십 회원 / Members',
@@ -31,12 +30,34 @@ export default {
           title: '멤버십 방문 / Visits',
           desc: '당일 345건 (+34 명)',
           api: '/static/dummy/getMemberVisitCount'
+        },
+        'mileage-save': {
+          title: '마일리지 적립',
+          desc: '당월 누적 1,553,322 PT (당일 225,423 PT)',
+          api: '/static/dummy/getMemberCount'
+        },
+        'mileage-use': {
+          title: '마일리지 사용',
+          desc: '당월 누적 1,000,123 PT (당일 100,235 PT)',
+          api: '/static/dummy/getMemberVisitCount'
         }
       },
       chartData: {}
     }
   },
+  computed: {
+    selectedMembershipId () {
+      return this.$store.state.memberShipStatus
+    }
+  },
   methods: {
+    getChartData (selectedMembershipId) {
+      fetch(this.config[this.dataType].api + '_' + selectedMembershipId)
+        .then(res => res.json())
+        .then(response => {
+          this.chartData = this.makeChartData(response)
+        })
+    },
     makeChartData (rawJson) {
       let result = {
         labels: [],
@@ -67,12 +88,12 @@ export default {
     }
   },
   created () {
-    fetch(this.config[this.dataType].api)
-      .then(res => res.json())
-      .then(response => {
-        // this.fetchedData = response
-        this.chartData = this.makeChartData(response)
-      })
+    this.getChartData(this.selectedMembershipId)
+  },
+  watch: {
+    selectedMembershipId (val) {
+      this.getChartData(val)
+    }
   }
 }
 </script>
