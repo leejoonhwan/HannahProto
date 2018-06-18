@@ -3,8 +3,10 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const PORT = process.env.HTTP_PORT || 3000
 const app = express()
-const happyCharge = require('./happyCharge')
-const levis = require('./levis')
+const happyChargeMixChartCount = require('./happyChargeMixChartCount')
+const levisMixChartCount = require('./levisMixChartCount')
+const happyChargeMixChartVisit = require('./happyChargeMixChartVisit')
+const levisMixChartVisit = require('./levisMixChartVisit')
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -18,15 +20,15 @@ app.post('/getCardMixChartData', (req, res) => {
 
   if (json.membership === 'levis') {
     if (json.apiName === 'memberCount') {
-      resultJson = levis.getJsonData()
+      resultJson = levisMixChartCount.getJsonData()
     } else if (json.apiName === 'memberVisit') {
-      resultJson = levis.getJsonData()
+      resultJson = levisMixChartVisit.getJsonData()
     }
   } else if (json.membership === 'happyCharge') {
     if (json.apiName === 'memberCount') {
-      resultJson = happyCharge.getJsonData()
+      resultJson = happyChargeMixChartCount.getJsonData()
     } else if (json.apiName === 'memberVisit') {
-      resultJson = happyCharge.getJsonData()
+      resultJson = happyChargeMixChartVisit.getJsonData()
     }
   }
 
