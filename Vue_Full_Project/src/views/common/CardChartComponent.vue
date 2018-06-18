@@ -20,7 +20,8 @@ export default {
   props: ['componentName'],
   data () {
     return {
-      url: '',
+      url: 'http://localhost:3000',
+      subUrl: '/getCardMixChartData',
       dataOptions: null,
       dataCollection: null,
       date: '',
@@ -54,28 +55,21 @@ export default {
   },
   watch: {
     membershipIndex (val) {
-      this.getDataUrl(val)
-      this.getMemberCountData(this.url)
+      var params = {}
+      params.membership = val
+      params.apiName = this.componentName
+      this.getCardMixChartData(this.url + this.subUrl, params)
     }
   },
-  created () {
-    this.getDataUrl(this.membershipIndex)
-    // this.getMemberCountData(this.url)
-  },
   mounted () {
-    this.getDataUrl(this.membershipIndex)
     // this.getMemberCountData(this.url)
     var params = {}
-    params.membership = 'happyCharge'
-    params.apiName = 'memberVisit'
-    this.getTest('http://localhost:3000', params)
+    params.membership = this.membershipIndex
+    params.apiName = this.componentName
+    this.getCardMixChartData(this.url + this.subUrl, params)
   },
   methods: {
-    getDataUrl (val) {
-      if (val === 'levis') this.url = '/static/dummy/CardMixLevisData'
-      else if (val === 'happyCharge') this.url = '/static/dummy/CardMixHappyChargeData'
-    },
-    getTest (url, params) {
+    getCardMixChartData (url, params) {
       fetch(url, {
         headers: {
           'Content-Type': 'application/json',
@@ -100,27 +94,6 @@ export default {
           // 넘길 옵션 만들기
           this.makeMixChartOption()
         })
-    },
-    getMemberCountData (url) {
-      fetch(url).then((resp) => resp.json()).then((response) => {
-        var size = response.data.length
-
-        var labels = []
-        var data = []
-
-        for (var i = 0; i < size; i++) {
-          labels.push(response.data[i].date)
-          data.push(response.data[i].cnt)
-        }
-        this.mainCount = response.total
-        this.subCount = response.data[size - 1].cnt
-
-        // 넘길 데이터 만들기
-        this.makeMixChartData(labels, data)
-
-        // 넘길 옵션 만들기
-        this.makeMixChartOption()
-      })
     },
     makeMixChartData (labels, data) {
       this.dataCollection = {

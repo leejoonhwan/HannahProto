@@ -4,29 +4,33 @@ const cors = require('cors')
 const PORT = process.env.HTTP_PORT || 3000
 const app = express()
 const happyCharge = require('./happyCharge')
+const levis = require('./levis')
 
 app.use(bodyParser.json())
 app.use(cors())
 
-app.post('/', (req, res) => {
+app.post('/getCardMixChartData', (req, res) => {
   req.accepts('application/json')
   var json = req.body
-  console.log('name is :' + json.membership)
-  console.log('address is :' + json.apiName)
+  console.log(json.membership, json.apiName)
 
-  /* if (reqObj.membership === 'levis') {
+  var resultJson = {}
 
-  } else if (reqObj.membership === 'happyCharge') {
-    if (reqObj.apiName === 'memberCount') {
-      console.log(reqObj.apiName)
+  if (json.membership === 'levis') {
+    if (json.apiName === 'memberCount') {
+      resultJson = levis.getJsonData()
+    } else if (json.apiName === 'memberVisit') {
+      resultJson = levis.getJsonData()
+    }
+  } else if (json.membership === 'happyCharge') {
+    if (json.apiName === 'memberCount') {
       resultJson = happyCharge.getJsonData()
-    } else if (reqObj.apiName === 'memberVisit') {
-      console.log(reqObj.apiName)
+    } else if (json.apiName === 'memberVisit') {
       resultJson = happyCharge.getJsonData()
     }
-  } */
+  }
 
-  res.status(200).send({result: 'success'})
+  res.status(200).send(resultJson)
 })
 
 app.listen(PORT, () =>
