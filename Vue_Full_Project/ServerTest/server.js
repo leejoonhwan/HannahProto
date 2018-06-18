@@ -1,22 +1,32 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-
 const PORT = process.env.HTTP_PORT || 3000
-
 const app = express()
+const happyCharge = require('./happyCharge')
+
 app.use(bodyParser.json())
 app.use(cors())
 
 app.post('/', (req, res) => {
-  console.log('1231231231')
+  req.accepts('application/json')
+  var json = req.body
+  console.log('name is :' + json.membership)
+  console.log('address is :' + json.apiName)
 
-  var res_body = [{
-    name: 'joonhwan',
-    age: 'fuck'
-  }]
+  /* if (reqObj.membership === 'levis') {
 
-  res.send(JSON.stringify(res_body))
+  } else if (reqObj.membership === 'happyCharge') {
+    if (reqObj.apiName === 'memberCount') {
+      console.log(reqObj.apiName)
+      resultJson = happyCharge.getJsonData()
+    } else if (reqObj.apiName === 'memberVisit') {
+      console.log(reqObj.apiName)
+      resultJson = happyCharge.getJsonData()
+    }
+  } */
+
+  res.status(200).send({result: 'success'})
 })
 
 app.listen(PORT, () =>

@@ -77,6 +77,10 @@ export default {
     },
     getTest (url, params) {
       fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         method: 'POST',
         body: JSON.stringify(params)
       }).then((res) => res.json())
