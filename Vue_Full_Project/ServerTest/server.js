@@ -3,30 +3,36 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const PORT = process.env.HTTP_PORT || 3000
 const app = express()
-const happyCharge = require('./happyCharge')
+const happyChargeMixChartCount = require('./happyChargeMixChartCount')
+const levisMixChartCount = require('./levisMixChartCount')
+const happyChargeMixChartVisit = require('./happyChargeMixChartVisit')
+const levisMixChartVisit = require('./levisMixChartVisit')
 
 app.use(bodyParser.json())
 app.use(cors())
 
-app.post('/', (req, res) => {
+app.post('/getCardMixChartData', (req, res) => {
   req.accepts('application/json')
   var json = req.body
-  console.log('name is :' + json.membership)
-  console.log('address is :' + json.apiName)
+  console.log(json.membership, json.apiName)
 
-  /* if (reqObj.membership === 'levis') {
+  var resultJson = {}
 
-  } else if (reqObj.membership === 'happyCharge') {
-    if (reqObj.apiName === 'memberCount') {
-      console.log(reqObj.apiName)
-      resultJson = happyCharge.getJsonData()
-    } else if (reqObj.apiName === 'memberVisit') {
-      console.log(reqObj.apiName)
-      resultJson = happyCharge.getJsonData()
+  if (json.membership === 'levis') {
+    if (json.apiName === 'memberCount') {
+      resultJson = levisMixChartCount.getJsonData()
+    } else if (json.apiName === 'memberVisit') {
+      resultJson = levisMixChartVisit.getJsonData()
     }
-  } */
+  } else if (json.membership === 'happyCharge') {
+    if (json.apiName === 'memberCount') {
+      resultJson = happyChargeMixChartCount.getJsonData()
+    } else if (json.apiName === 'memberVisit') {
+      resultJson = happyChargeMixChartVisit.getJsonData()
+    }
+  }
 
-  res.status(200).send({result: 'success'})
+  res.status(200).send(resultJson)
 })
 
 app.listen(PORT, () =>
