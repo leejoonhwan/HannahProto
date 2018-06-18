@@ -90,7 +90,8 @@ export default {
             backgroundColor: 'transparent',
             borderColor: brandInfo,
             pointHoverBackgroundColor: '#fff',
-            borderWidth: 2,
+            borderWidth: 3,
+            borderDash: [5, 2],
             yAxisID: 'right-y-axis',
             data: []
           }, {
@@ -107,7 +108,6 @@ export default {
             borderColor: brandDanger,
             pointHoverBackgroundColor: '#fff',
             borderWidth: 2,
-            borderDash: [2, 2],
             AxisID: 'left-y-axis',
             data: []
           }]
