@@ -1,23 +1,17 @@
 <template>
   <b-card>
     <b-row>
-      <b-col sm="7">
-        <h4 id="traffic" class="card-title mb-0">시계열 / Time Series</h4>
-      </b-col>
-      <b-col sm="1">
-        <b-form-select id="basicSelectLg" :options="['멤버십 회원']" value="멤버십 회원"/>
-      </b-col>
-      <b-col sm="1">
-        <b-form-select id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
-      </b-col>
-      <b-col sm="2">
-        <date-picker v-model="value3" range lang="en"></date-picker>
-      </b-col>
-      <b-col >
-        <i class="fa fa-refresh fa-2x mt-1" style="color: #3b5998"></i>
-      </b-col>
-      <b-col >
-        <i class="fa fa-download fa-2x mt-1" style="color: #7ab800" ></i>
+      <b-col>
+        <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[this.dataType].title }}</h4>
+        <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
+        <i class="fa fa-refresh fa-2x mt-1 float-right px-2" style="color: #3b5998"></i>
+        <date-picker v-if="config[dataType].showDatePicker" class="float-right px-2" v-model="value3" range lang="en"></date-picker>
+        <div v-if="config[dataType].showUnitSelector" class="float-right px-2" >
+          <b-form-select style="width:auto;" id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
+        </div>
+        <div v-if="config[dataType].showDataSelector" class="float-right px-2">
+          <b-form-select style="width:auto;" id="basicSelectLg" :options="['멤버십 회원']" value="멤버십 회원"/>
+        </div>
       </b-col>
     </b-row>
     <b-row>
@@ -29,6 +23,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import TimeSeriesChart from './charts/TimeSeriesChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 
@@ -96,6 +91,7 @@ export default {
             borderColor: brandInfo,
             pointHoverBackgroundColor: '#fff',
             borderWidth: 2,
+            yAxisID: 'right-y-axis',
             data: []
           }, {
             label: '',
@@ -103,6 +99,7 @@ export default {
             borderColor: brandSuccess,
             pointHoverBackgroundColor: '#fff',
             borderWidth: 2,
+            AxisID: 'left-y-axis',
             data: []
           }, {
             label: '',
@@ -111,12 +108,13 @@ export default {
             pointHoverBackgroundColor: '#fff',
             borderWidth: 2,
             borderDash: [2, 2],
+            AxisID: 'left-y-axis',
             data: []
           }]
       }
       for (let d of rawJson.data) {
-        result.labels.push(d.date)
-        result.datasets[0].label = this.config[this.dataType].legends['accum']
+        result.labels.push(moment(d.date, 'YYYY-MM-DD').format('M/D'))
+        result.datasets[0].label = this.config[this.dataType].legends['user']
         result.datasets[0].data.push(d.user)
         result.datasets[1].label = this.config[this.dataType].legends['save_pt']
         result.datasets[1].data.push(d.save_pt)
