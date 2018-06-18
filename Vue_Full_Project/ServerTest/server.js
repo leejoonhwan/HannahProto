@@ -1,38 +1,24 @@
-var happyCharge = require('./happyCharge')
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
-var http = require('http')
+const PORT = process.env.HTTP_PORT || 3000
 
-http.createServer(function (req, res) {
-  var jsonData = ''
+const app = express()
+app.use(bodyParser.json())
+app.use(cors())
 
-  req.on('data', function (chunk) {
-    jsonData += chunk
-  })
+app.post('/', (req, res) => {
+  console.log('1231231231')
 
-  req.on('end', function () {
-    var reqObj = JSON.parse(jsonData)
+  var res_body = [{
+    name: 'joonhwan',
+    age: 'fuck'
+  }]
 
-    var resultJson = {}
+  res.send(JSON.stringify(res_body))
+})
 
-    if (reqObj.membership === 'levis') {
-
-    } else if (reqObj.membership === 'happyCharge') {
-      if (reqObj.apiName === 'memberCount') {
-        console.log(reqObj.apiName)
-        resultJson = happyCharge.getJsonData()
-      } else if (reqObj.apiName === 'memberVisit') {
-        console.log(reqObj.apiName)
-        resultJson = happyCharge.getJsonData()
-      }
-    }
-
-    res.headers('Access-Control-Allow-Origin', '*')
-    res.headers('Access-Control-Allow-Headers', 'X-Requested-With')
-    res.headers('Access-Control-Allow-Credentials', 'true')
-    res.writeHead(200, {'Content-Type': 'application/json'})
-    console.log(JSON.stringify(resultJson))
-    res.end(JSON.stringify(resultJson))
-  })
-}).listen(3000)
-
-console.log('Listening on port 3000')
+app.listen(PORT, () =>
+  console.log(`Server running on port ${PORT} ✅`)
+)

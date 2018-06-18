@@ -60,16 +60,42 @@ export default {
   },
   created () {
     this.getDataUrl(this.membershipIndex)
-    this.getMemberCountData(this.url)
+    // this.getMemberCountData(this.url)
   },
   mounted () {
     this.getDataUrl(this.membershipIndex)
-    this.getMemberCountData(this.url)
+    // this.getMemberCountData(this.url)
+    var params = {}
+    params.membership = 'happyCharge'
+    params.apiName = 'memberVisit'
+    this.getTest('http://localhost:3000', params)
   },
   methods: {
     getDataUrl (val) {
       if (val === 'levis') this.url = '/static/dummy/CardMixLevisData'
       else if (val === 'happyCharge') this.url = '/static/dummy/CardMixHappyChargeData'
+    },
+    getTest (url, params) {
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(params)
+      }).then((res) => res.json())
+        .then((response) => {
+          console.log(JSON.stringify(response))
+          var size = response.data.length
+          var labels = []
+          var data = []
+          for (var i = 0; i < size; i++) {
+            labels.push(response.data[i].date)
+            data.push(response.data[i].cnt)
+          }
+          this.mainCount = response.total
+          this.subCount = response.data[size - 1].cnt
+          // 넘길 데이터 만들기
+          this.makeMixChartData(labels, data)
+          // 넘길 옵션 만들기
+          this.makeMixChartOption()
+        })
     },
     getMemberCountData (url) {
       fetch(url).then((resp) => resp.json()).then((response) => {
