@@ -12,6 +12,7 @@
       </b-col>
       <b-col sm="2">
         <date-picker v-model="value3" range lang="en"></date-picker>
+        <date-range-picker :startDate="startDate" :endDate="endDate" @input="console.log(value)"/>
       </b-col>
       <b-col md="1">
         <i class="fa fa-refresh fa-2x mt-1" style="color: #3b5998"></i>
@@ -30,6 +31,7 @@
 import MainChartExample from './charts/MainChartExample'
 import RandomChart from '../dashboard/RandomChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
+import DateRangePicker from 'vue2-daterange-picker/src/components/DateRangePicker'
 import store from '../../vuex/store'
 const brandSuccess = '#4dbd74'
 const brandInfo = '#63c2de'
@@ -39,7 +41,8 @@ export default {
   components: {
     MainChartExample,
     DatePicker,
-    RandomChart
+    RandomChart,
+    DateRangePicker
   },
   store,
   data () {
@@ -56,7 +59,9 @@ export default {
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
-      value3: new Date()
+      value3: new Date(),
+      startDate: '2017-09-05',
+      endDate: '2017-09-15'
     }
   },
   mounted () {
