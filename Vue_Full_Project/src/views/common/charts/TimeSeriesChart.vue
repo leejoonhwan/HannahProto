@@ -19,14 +19,27 @@ export default {
             }
           }],
           yAxes: [{
+            id: 'left-y-axis',
             ticks: {
               beginAtZero: true,
-              maxTicksLimit: 100,
-              stepSize: Math.ceil(2000 / 5),
-              max: 2000
+              maxTicksLimit: 100
+              // stepSize: Math.ceil(2000 / 5),
+              // max: 2000
             },
             gridLines: {
               display: true
+            }
+          }, {
+            id: 'right-y-axis',
+            position: 'right',
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 100
+              // stepSize: Math.ceil(2000 / 5),
+              // max: 2000
+            },
+            gridLines: {
+              display: false
             }
           }]
         },
