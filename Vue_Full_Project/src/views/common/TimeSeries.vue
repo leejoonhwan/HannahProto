@@ -5,7 +5,7 @@
         <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[this.dataType].title }}</h4>
         <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
         <i class="fa fa-refresh fa-2x mt-1 float-right px-2" style="color: #3b5998"></i>
-        <date-picker v-if="config[dataType].showDatePicker" class="float-right px-2" v-model="value3" range lang="en"></date-picker>
+        <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
         <div v-if="config[dataType].showUnitSelector" class="float-right px-2" >
           <b-form-select style="width:auto;" id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
         </div>
@@ -25,7 +25,8 @@
 <script>
 import moment from 'moment'
 import TimeSeriesChart from './charts/TimeSeriesChart'
-import DatePicker from '../../../node_modules/vue2-datepicker/index'
+import DateRangePicker from 'vue2-daterange-picker/src/components/DateRangePicker'
+// import DateRangePicker from 'bootstrap-daterangepicker/daterangepicker'
 
 const brandSuccess = '#4dbd74'
 const brandInfo = '#63c2de'
@@ -35,11 +36,16 @@ export default {
   name: 'TimeSeries',
   components: {
     TimeSeriesChart,
-    DatePicker
+    // DatePicker
+    DateRangePicker
   },
   props: ['data-type'],
   data () {
     return {
+      pickedDates: {
+        startDate: '2018-06-01',
+        endDate: '2018-06-15'
+      },
       config: {
         'member': {
           title: '멤버십 가입/방문 시계열 통계',
@@ -141,6 +147,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style >
+  @import "https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css";
+  /*@import "../../../node_modules/vue2-daterange-picker/dist/docs/css/vue-daterange-picker.e98ed5d6eab031414deb18d55f767b9a.css";*/
+  /*@import "../../../node_modules/vue2-daterange-picker/dist/docs/css/docs.d8d8151b0ce6e516533cc0e79ff22172.css";*/
 </style>
