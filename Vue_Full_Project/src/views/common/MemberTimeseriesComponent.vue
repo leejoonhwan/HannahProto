@@ -27,7 +27,7 @@
   </b-card>
 </template>
 <script>
-import MainChartExample from '../common/charts/MainChartExample'
+import MainChartExample from './charts/MainChartExample'
 import RandomChart from '../dashboard/RandomChart'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import store from '../../vuex/store'
@@ -44,7 +44,8 @@ export default {
   store,
   data () {
     return {
-      dataUrl: '',
+      url: 'http://localhost:3000',
+      subUrl: '/getTimeseriesData',
       dataTotal: [],
       dataPause: [],
       dataWithdraw: [],
@@ -55,24 +56,14 @@ export default {
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
-      value3: new Date(),
-      urlSet: {
-        'levis': {
-          'timeSeriesVisitUrl': '/static/dummy/getLevisTimeSeriesVisit',
-          'timeSeriesMemberUrl': '/static/dummy/getLevisTimeSeriesMember'
-        },
-        'happyCharge': {
-          'timeSeriesVisitUrl': '/static/dummy/getHappyChargeTimeSeriesVisit',
-          'timeSeriesMemberUrl': '/static/dummy/getHappyChargeTimeSeriesMember'
-        }
-      }
+      value3: new Date()
     }
   },
-  created () {
-    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
-  },
   mounted () {
-    this.getTimeSeriesData('/static/dummy/getHappyChargeTimeSeriesMember')
+    var params = {}
+    params.membership = this.membershipIndex
+    params.apiName = this.componentName
+    this.getTimeSeriesChartData(this.url + this.subUrl, params)
   },
   updated () {
   },
@@ -83,11 +74,36 @@ export default {
   },
   watch: {
     membershipIndex (val) {
-      this.getDataUrl()
-      this.getTimeSeriesData(this.dataUrl)
+      var params = {}
+      params.membership = val
+      params.apiName = this.componentName
+      this.getTimeSeriesChartData(this.url + this.subUrl, params)
     }
   },
   methods: {
+    getTimeSeriesChartData (url, params) {
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }).then((res) => res.json())
+        .then((response) => {
+          this.initData()
+          const size = response.data.length
+          for (var i = 0; i < size; i++) {
+            this.dataTotal.push(response.data[i].total)
+            this.dataPause.push(response.data[i].pause)
+            this.dataWithdraw.push(response.data[i].exit)
+            this.dataNew.push(response.data[i].join)
+            this.dateList.push(response.data[i].date)
+          }
+          this.makeDataCollection()
+          this.makeOption()
+        })
+    },
     getDataUrl () {
       this.dataUrl = this.urlSet
       if (this.$store.state.memberShipStatus === 'levis') this.dataUrl = this.dataUrl.levis
@@ -104,21 +120,6 @@ export default {
       this.dataWithdraw = []
       this.dataNew = []
       this.dateList = []
-    },
-    getTimeSeriesData (url) {
-      fetch(url).then((resp) => resp.json()).then(response => {
-        this.initData()
-        const size = response.data.length
-        for (var i = 0; i < size; i++) {
-          this.dataTotal.push(response.data[i].total)
-          this.dataPause.push(response.data[i].pause)
-          this.dataWithdraw.push(response.data[i].exit)
-          this.dataNew.push(response.data[i].join)
-          this.dateList.push(response.data[i].date)
-        }
-        this.makeDataCollection()
-        this.makeOption()
-      })
     },
     // 전달할 dataSet 구성
     makeDataCollection () {

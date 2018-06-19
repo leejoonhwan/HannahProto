@@ -29,7 +29,6 @@ export default {
       subCount: 0
     }
   },
-
   computed: {
     membershipIndex () {
       return this.$store.state.memberShipStatus
@@ -89,6 +88,7 @@ export default {
           }
           this.mainCount = response.total
           this.subCount = response.data[size - 1].cnt
+          this.date = response.data[size - 1].date
           // 넘길 데이터 만들기
           this.makeMixChartData(labels, data)
           // 넘길 옵션 만들기

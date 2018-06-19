@@ -15,7 +15,7 @@
 <style scoped>
 </style>
 <script>
-import MemberTimeseriesComponent from '../dashboard/MemberTimeseriesComponent'
+import MemberTimeseriesComponent from '../common/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
 import CardChartComponent from '../common/CardChartComponent'
 import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
