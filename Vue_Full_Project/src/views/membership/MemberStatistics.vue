@@ -10,7 +10,7 @@
     </b-row>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
-    <table-component fixed bordered :items="tableData" :fields="fieldData" :titleName="titleName" :perPage="perPage"></table-component>
+    <table-component fixed bordered :items="tableData" :fields="fieldData" :dataType="dataType"></table-component>
   </div>
 </template>
 <style scoped>
@@ -64,16 +64,16 @@ export default {
       membershipStatusIndex: '',
       fieldData: [{}],
       tableData: [{}],
-      titleName: '',
-      perPage: 0
+      dataType: ''
     }
   },
   created () {
-  },
-  mounted () {
     var params = {}
     params.membership = this.membershipIndex
     this.getPreferMerchantData(this.url + this.subUrl, params)
+  },
+  mounted () {
+
   },
   updated () {
   },
@@ -116,8 +116,7 @@ export default {
           }
           console.log(JSON.stringify(this.tableData))
           console.log(JSON.stringify(this.fieldData))
-          this.titleName = '선호 매장 설정 회원 ( 5/17 기준)'
-          this.perPage = 10
+          this.dataType = 'prefer-merchant'
         })
     }
   }

@@ -8,7 +8,7 @@
     &nbsp;&nbsp;&nbsp;
     <b-row>
       <b-col sm="2">
-        <b-form-select id="basicSelectLg" :options="['10개씩 보기','25개씩 보기','50개씩 보기']"/>
+        <b-form-select id="basicSelectLg" v-model="rowSizeSelect" :options="rowSizeSelectedItem"/>
       </b-col>
     </b-row>
     <b-row>
@@ -23,7 +23,7 @@
     <b-row>
       <b-col sm="4">
         <nav>
-          <h6 class="card-title mb-0">118개 중 1-10번 표시</h6>
+          <h6 class="card-title mb-0">{{totalCount}}개 중 1-{{perPage}}번 표시</h6>
         </nav>
       </b-col>
       <b-col sm="8">
@@ -40,7 +40,7 @@
    * Randomize array element order in-place.
    * Using Durstenfeld shuffle algorithm.
    */
-
+import moment from 'moment'
 export default {
   name: 'TableComponent',
   props: {
@@ -70,13 +70,47 @@ export default {
     },
     items: {},
     fields: {},
-    titleName: '',
-    perPage: 0
+    dataType: ''
   },
   data: () => {
     return {
       currentPage: 1,
-      totalRows: 0
+      config: {
+        'prefer-merchant': {
+          rowSizeSelected: '10',
+          rowSizeSelectItem: [
+            {value: '10', text: '10개씩 보기'},
+            {value: '25', text: '25개씩 보기'},
+            {value: '50', text: '50개씩 보기'}
+          ],
+          titleName: '선호 매장 설정 회원 (' + moment().format('M/D') + ') 기준',
+          perPage: 10
+        }
+      }
+    }
+  },
+  computed: {
+    totalCount () {
+      console.log(this.items.length)
+      return this.items.length
+    },
+    titleName () {
+      console.log(this.config[this.dataType].titleName)
+      return this.config[this.dataType].titleName
+    },
+    perPage () {
+      return this.config[this.dataType].perPage
+    },
+    rowSizeSelectedItem () {
+      return this.config[this.dataType].rowSizeSelectItem
+    },
+    rowSizeSelect: {
+      get: function () {
+        return this.config[this.dataType].rowSizeSelected
+      },
+      set: function (newValue) {
+        this.config[this.dataType].rowSizeSelected = newValue
+      }
     }
   },
   updated () {
