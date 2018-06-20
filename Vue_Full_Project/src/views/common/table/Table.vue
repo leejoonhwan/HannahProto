@@ -2,7 +2,7 @@
   <b-card>
     <b-row>
       <b-col sm="5">
-        <h4 id="traffic" class="card-title mb-0">{{ this.config[this.dataType].title }}</h4>
+        <h4 id="traffic" class="card-title mb-0">{{this.config[this.dataType].title }}</h4>
       </b-col>
     </b-row>
     &nbsp;&nbsp;&nbsp;
@@ -17,6 +17,7 @@
           <template slot="status" slot-scope="data">
             <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
           </template>
+          <span slot="actions" slot-scope="data" v-html="data.value"></span>
         </b-table>
       </b-col>
     </b-row>
@@ -41,8 +42,12 @@
    * Using Durstenfeld shuffle algorithm.
    */
 import moment from 'moment'
+import ExcelDownLoadComponent from '../../common/button/ExcelDownLoadComponent'
 export default {
   name: 'TableComponent',
+  components: {
+    ExcelDownLoadComponent
+  },
   props: {
     caption: {
       type: String,

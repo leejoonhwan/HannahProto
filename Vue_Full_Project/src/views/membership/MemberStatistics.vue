@@ -10,12 +10,13 @@
     </b-row>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
-    <table-component fixed bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
+    <table-component bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
   </div>
 </template>
 <style scoped>
 </style>
 <script>
+
 import MemberTimeseriesComponent from '../common/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
 import CardChartComponent from '../common/CardChartComponent'
@@ -104,6 +105,7 @@ export default {
           const size = response.data.length
           for (var i = 0; i < size; i++) {
             var dataSet = response.data[i]
+            dataSet.actions = '<ExcelDownLoadComponent/>'
             this.tableData.push(dataSet)
             if (i === 0) {
               console.log(JSON.stringify(Object.keys(dataSet)))
