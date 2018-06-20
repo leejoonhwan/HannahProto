@@ -14,10 +14,9 @@
     <b-row>
       <b-col sm="12">
         <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage">
-          <template slot="status" slot-scope="data">
-            <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
+          <template slot="actions"  slot-scope="data" v-html="data.value">
+            <i class="fa fa-download fa-2x mt-1" style="color: #7ab800" v-on:click = "downloadExcel(data.item.merchantId)"></i>
           </template>
-          <span slot="actions" slot-scope="data" v-html="data.value"></span>
         </b-table>
       </b-col>
     </b-row>
@@ -135,6 +134,9 @@ export default {
     },
     getRowCount (items) {
       return items.length
+    },
+    downloadExcel (merchantId) {
+      console.log(JSON.stringify(merchantId))
     }
   }
 }

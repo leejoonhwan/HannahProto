@@ -105,10 +105,9 @@ export default {
           const size = response.data.length
           for (var i = 0; i < size; i++) {
             var dataSet = response.data[i]
-            dataSet.actions = ' <i class="fa fa-download fa-2x mt-1" style="color: #7ab800"></i>'
+
             this.tableData.push(dataSet)
             if (i === 0) {
-              console.log(JSON.stringify(Object.keys(dataSet)))
               for (var k in Object.keys(dataSet)) {
                 var rowObj = {}
                 if (Object.keys(dataSet)[k] === 'merchantId') rowObj.label = '매장ID'
@@ -119,6 +118,9 @@ export default {
                 rowObj.sortable = true
                 this.fieldData.push(rowObj)
               }
+              this.fieldData.push({
+                key: 'actions'
+              })
             }
           }
         })
