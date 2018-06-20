@@ -77,25 +77,30 @@ export default {
       currentPage: 1,
       config: {
         'prefer-merchant': {
-          rowSizeSelected: '10',
+          rowSizeSelected: 10,
           rowSizeSelectItem: [
-            {value: '10', text: '10개씩 보기'},
-            {value: '25', text: '25개씩 보기'},
-            {value: '50', text: '50개씩 보기'}
+            {value: 10, text: '10개씩 보기'},
+            {value: 25, text: '25개씩 보기'},
+            {value: 50, text: '50개씩 보기'}
           ],
           title: '선호 매장 설정 회원 (' + moment().format('M/D') + ')  기준',
           perPage: 10
         }
-      }
+      },
+      rowSizeTemp: ''
     }
   },
   computed: {
     totalCount () {
-      console.log(this.items.length)
       return this.items.length
     },
-    perPage () {
-      return this.config[this.dataType].perPage
+    perPage: {
+      get: function () {
+        return this.config[this.dataType].perPage
+      },
+      set: function (newValue) {
+        this.config[this.dataType].perPage = newValue
+      }
     },
     rowSizeSelectedItem () {
       return this.config[this.dataType].rowSizeSelectItem
@@ -109,8 +114,14 @@ export default {
       }
     }
   },
+  mounted () {
+    this.rowSizeTemp = this.rowSizeSelect
+  },
   updated () {
-    console.log(123123123)
+    if (this.rowSizeSelect !== this.rowSizeTemp) {
+      this.rowSizeTemp = this.rowSizeSelect
+      this.perPage = this.rowSizeSelect
+    }
   },
   methods: {
     getBadge (status) {

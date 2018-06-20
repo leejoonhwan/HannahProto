@@ -78,7 +78,6 @@ export default {
         body: JSON.stringify(params)
       }).then((res) => res.json())
         .then((response) => {
-          console.log(JSON.stringify(response))
           var size = response.data.length
           var labels = []
           var data = []

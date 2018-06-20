@@ -83,12 +83,10 @@ export default {
   },
   methods: {
     reflesh () {
-      console.log(this.membershipSelected)
       var params = {}
       params.membership = this.membershipIndex
       params.apiName = this.membershipSelected
       params.rangeType = this.rangeType
-      console.log(JSON.stringify(params))
       // this.getTimeSeriesChartData(this.url + this.subUrl, params)
     },
     getTimeSeriesChartData (url, params) {

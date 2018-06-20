@@ -113,8 +113,6 @@ export default {
               }
             }
           }
-          console.log(JSON.stringify(this.tableData))
-          console.log(JSON.stringify(this.fieldData))
         })
     }
   }

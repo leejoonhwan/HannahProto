@@ -110,8 +110,6 @@ export default {
       list.splice(6, list.length)
 
       for (let i in list) list[i].rank = Number(i) + 1
-
-      console.log(list)
       this.tableData = list
     },
     drawAmchart (configData) {
