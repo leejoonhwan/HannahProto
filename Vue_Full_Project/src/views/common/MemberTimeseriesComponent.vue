@@ -8,14 +8,13 @@
         <b-form-select v-model="membershipSelected" id="basicSelectLg" :options="timeSeries"/>
       </b-col>
       <b-col sm="2">
-        <b-form-select id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
+        <b-form-select v-model="rangeType" id="basicSelectLg" :options="['일간','주간','월간']"/>
       </b-col>
       <b-col sm="2">
-        <date-picker v-model="value3" range lang="en"></date-picker>
         <date-range-picker :startDate="startDate" :endDate="endDate" @input="console.log(value)"/>
       </b-col>
       <b-col md="1">
-        <i class="fa fa-refresh fa-2x mt-1" style="color: #3b5998"></i>
+        <i class="fa fa-refresh fa-2x mt-1" style="color: #3b5998" v-on:click = "reflesh"></i>
         &nbsp;&nbsp;&nbsp;
         <i class="fa fa-download fa-2x mt-1" style="color: #7ab800"></i>
       </b-col>
@@ -30,7 +29,6 @@
 <script>
 import MainChartExample from './charts/MainChartExample'
 import RandomChart from '../dashboard/RandomChart'
-import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import DateRangePicker from 'vue2-daterange-picker/src/components/DateRangePicker'
 import store from '../../vuex/store'
 const brandSuccess = '#4dbd74'
@@ -40,7 +38,6 @@ export default {
   name: 'MemberTimeseriesComponent',
   components: {
     MainChartExample,
-    DatePicker,
     RandomChart,
     DateRangePicker
   },
@@ -56,6 +53,7 @@ export default {
       dateList: [],
       dataOptions: null,
       dataCollection: null,
+      rangeType: '주간',
       membershipSelected: 'member',
       timeSeries: [{value: 'member', text: '멤버십 회원'},
         {value: 'visit', text: '멤버십 방문'}],
@@ -69,8 +67,6 @@ export default {
     params.membership = this.membershipIndex
     params.apiName = this.componentName
     this.getTimeSeriesChartData(this.url + this.subUrl, params)
-  },
-  updated () {
   },
   computed: {
     membershipIndex () {
@@ -86,6 +82,15 @@ export default {
     }
   },
   methods: {
+    reflesh () {
+      console.log(this.membershipSelected)
+      var params = {}
+      params.membership = this.membershipIndex
+      params.apiName = this.membershipSelected
+      params.rangeType = this.rangeType
+      console.log(JSON.stringify(params))
+      // this.getTimeSeriesChartData(this.url + this.subUrl, params)
+    },
     getTimeSeriesChartData (url, params) {
       fetch(url, {
         headers: {
@@ -108,16 +113,6 @@ export default {
           this.makeDataCollection()
           this.makeOption()
         })
-    },
-    getDataUrl () {
-      this.dataUrl = this.urlSet
-      if (this.$store.state.memberShipStatus === 'levis') this.dataUrl = this.dataUrl.levis
-      else if (this.$store.state.memberShipStatus === 'happyCharge') this.dataUrl = this.dataUrl.happyCharge
-      if (this.membershipSelected === 'visit') {
-        this.dataUrl = this.dataUrl.timeSeriesVisitUrl
-      } else {
-        this.dataUrl = this.dataUrl.timeSeriesMemberUrl
-      }
     },
     initData () {
       this.dataTotal = []
@@ -206,4 +201,5 @@ export default {
 </script>
 
 <style scoped>
+  @import "https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css";
 </style>

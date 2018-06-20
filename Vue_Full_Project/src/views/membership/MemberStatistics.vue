@@ -10,6 +10,7 @@
     </b-row>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
+    <table-component fixed bordered :items="tableData" :fields="fieldData" :titleName="titleName" :perPage="perPage"></table-component>
   </div>
 </template>
 <style scoped>
@@ -29,6 +30,7 @@ import { Callout } from '../../components/'
 import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AmchartExample from '../dashboard/AmchartExample'
 import cTable from '../dashboard/Table.vue'
+import TableComponent from '../common/table/Table.vue'
 import store from '../../vuex/store'
 
 export default {
@@ -47,24 +49,77 @@ export default {
     CardChartComponent,
     MemberVisitCardBarChart,
     MemberGenderAgeComponent,
-    MemberTimeseriesComponent
+    MemberTimeseriesComponent,
+    TableComponent
   },
   store,
   data () {
     return {
+      url: 'http://localhost:3000',
+      subUrl: '/getPreferMerchantUser',
       membershipSelected: '',
       timeSeries: [{value: '멤버십 회원', text: '멤버십 회원'},
         {value: '멤버십 방문', text: '멤버십 방문'}],
       value3: new Date(),
-      membershipStatusIndex: ''
+      membershipStatusIndex: '',
+      fieldData: [{}],
+      tableData: [{}],
+      titleName: '',
+      perPage: 0
     }
   },
   created () {
-
   },
   mounted () {
+    var params = {}
+    params.membership = this.membershipIndex
+    this.getPreferMerchantData(this.url + this.subUrl, params)
   },
   updated () {
+  },
+  computed: {
+    membershipIndex () {
+      return this.$store.state.memberShipStatus
+    }
+  },
+  watch: {
+    membershipIndex (val) {
+      var params = {}
+      params.membership = val
+      this.getPreferMerchantData(this.url + this.subUrl, params)
+    }
+  },
+  methods: {
+    getPreferMerchantData (url, params) {
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }).then((res) => res.json())
+        .then((response) => {
+          this.fieldData = []
+          this.tableData = []
+          const size = response.data.length
+          for (var i = 0; i < size; i++) {
+            var dataSet = response.data[i]
+            this.tableData.push(dataSet)
+            if (i === 0) {
+              for (var k in Object.keys(dataSet)) {
+                this.fieldData.push({
+                  'key': Object.keys(dataSet)[k]
+                })
+              }
+            }
+          }
+          console.log(JSON.stringify(this.tableData))
+          console.log(JSON.stringify(this.fieldData))
+          this.titleName = '선호 매장 설정 회원 ( 5/17 기준)'
+          this.perPage = 10
+        })
+    }
   }
 }
 </script>

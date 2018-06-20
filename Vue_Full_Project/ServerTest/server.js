@@ -9,6 +9,10 @@ const happyChargeMixChartVisit = require('./happyChargeMixChartVisit')
 const levisMixChartVisit = require('./levisMixChartVisit')
 const happyChargeTimeseriesMember = require('./happyChargeTimeseriesMember')
 const levisTimeseriesMember = require('./levisTimeseriesMember')
+const happyChargePreferMerchantUser = require('./happyChargePreferMerchantUser')
+const levisPreferMerchantUser = require('./levisPreferMerchantUser')
+
+
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -46,6 +50,22 @@ app.post('/getTimeseriesData', (req, res) => {
     resultJson = happyChargeTimeseriesMember.getJsonData()
   } else if (json.membership === 'happyCharge') {
     resultJson = levisTimeseriesMember.getJsonData()
+  }
+  console.log(resultJson)
+  res.status(200).send(resultJson)
+})
+
+// 하단 테이블 Url
+app.post('/getPreferMerchantUser', (req, res) => {
+  req.accepts('application/json')
+  var json = req.body
+  console.log(json.membership, json.apiName)
+
+  var resultJson = {}
+  if (json.membership === 'levis') {
+    resultJson = happyChargePreferMerchantUser.getJsonData()
+  } else if (json.membership === 'happyCharge') {
+    resultJson = levisPreferMerchantUser.getJsonData()
   }
   console.log(resultJson)
   res.status(200).send(resultJson)
