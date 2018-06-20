@@ -106,11 +106,16 @@ export default {
             var dataSet = response.data[i]
             this.tableData.push(dataSet)
             if (i === 0) {
+              console.log(JSON.stringify(Object.keys(dataSet)))
               for (var k in Object.keys(dataSet)) {
-                this.fieldData.push({
-                  'key': Object.keys(dataSet)[k],
-                  'sortable': true
-                })
+                var rowObj = {}
+                if (Object.keys(dataSet)[k] === 'merchantId') rowObj.label = '매장ID'
+                else if (Object.keys(dataSet)[k] === 'merchantName') rowObj.label = '매장명'
+                else if (Object.keys(dataSet)[k] === 'address') rowObj.label = '주소'
+                else if (Object.keys(dataSet)[k] === 'memberCount') rowObj.label = '회원수'
+                rowObj.key = Object.keys(dataSet)[k]
+                rowObj.sortable = true
+                this.fieldData.push(rowObj)
               }
             }
           }
