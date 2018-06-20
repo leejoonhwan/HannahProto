@@ -2,7 +2,7 @@
   <b-card>
     <b-row>
       <b-col sm="5">
-        <h4 id="traffic" class="card-title mb-0">{{titleName}}</h4>
+        <h4 id="traffic" class="card-title mb-0">{{ this.config[this.dataType].title }}</h4>
       </b-col>
     </b-row>
     &nbsp;&nbsp;&nbsp;
@@ -83,7 +83,7 @@ export default {
             {value: '25', text: '25개씩 보기'},
             {value: '50', text: '50개씩 보기'}
           ],
-          titleName: '선호 매장 설정 회원 (' + moment().format('M/D') + ') 기준',
+          title: '선호 매장 설정 회원 (' + moment().format('M/D') + ')  기준',
           perPage: 10
         }
       }
@@ -93,10 +93,6 @@ export default {
     totalCount () {
       console.log(this.items.length)
       return this.items.length
-    },
-    titleName () {
-      console.log(this.config[this.dataType].titleName)
-      return this.config[this.dataType].titleName
     },
     perPage () {
       return this.config[this.dataType].perPage

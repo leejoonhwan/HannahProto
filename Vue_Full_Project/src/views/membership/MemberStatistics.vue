@@ -10,7 +10,7 @@
     </b-row>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
-    <table-component fixed bordered :items="tableData" :fields="fieldData" :dataType="dataType"></table-component>
+    <table-component fixed bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
   </div>
 </template>
 <style scoped>
@@ -63,8 +63,7 @@ export default {
       value3: new Date(),
       membershipStatusIndex: '',
       fieldData: [{}],
-      tableData: [{}],
-      dataType: ''
+      tableData: [{}]
     }
   },
   created () {
@@ -116,7 +115,6 @@ export default {
           }
           console.log(JSON.stringify(this.tableData))
           console.log(JSON.stringify(this.fieldData))
-          this.dataType = 'prefer-merchant'
         })
     }
   }
