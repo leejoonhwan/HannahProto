@@ -108,7 +108,8 @@ export default {
             if (i === 0) {
               for (var k in Object.keys(dataSet)) {
                 this.fieldData.push({
-                  'key': Object.keys(dataSet)[k]
+                  'key': Object.keys(dataSet)[k],
+                  'sortable': true
                 })
               }
             }
