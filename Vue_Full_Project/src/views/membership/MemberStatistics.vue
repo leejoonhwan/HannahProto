@@ -105,7 +105,7 @@ export default {
           const size = response.data.length
           for (var i = 0; i < size; i++) {
             var dataSet = response.data[i]
-            dataSet.actions = '<ExcelDownLoadComponent/>'
+            dataSet.actions = ' <i class="fa fa-download fa-2x mt-1" style="color: #7ab800"></i>'
             this.tableData.push(dataSet)
             if (i === 0) {
               console.log(JSON.stringify(Object.keys(dataSet)))

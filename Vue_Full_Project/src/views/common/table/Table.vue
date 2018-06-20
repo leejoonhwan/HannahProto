@@ -42,11 +42,9 @@
    * Using Durstenfeld shuffle algorithm.
    */
 import moment from 'moment'
-import ExcelDownLoadComponent from '../../common/button/ExcelDownLoadComponent'
 export default {
   name: 'TableComponent',
   components: {
-    ExcelDownLoadComponent
   },
   props: {
     caption: {
