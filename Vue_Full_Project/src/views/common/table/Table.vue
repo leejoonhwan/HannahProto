@@ -14,8 +14,8 @@
     <b-row>
       <b-col sm="12">
         <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage">
-          <template slot="actions"  slot-scope="data" v-html="data.value">
-            <i class="fa fa-download fa-2x mt-1" style="color: #7ab800" v-on:click = "downloadExcel(data.item.merchantId)"></i>
+          <template slot="actions"  slot-scope="data">
+            <i class="fa fa-download fa-2x mt-1" style="color: #7ab800" v-on:click = "downloadExcel(data.item.merchantId)" v-html="data.value"></i>
           </template>
         </b-table>
       </b-col>
@@ -41,9 +41,11 @@
    * Using Durstenfeld shuffle algorithm.
    */
 import moment from 'moment'
+import ExcelDownLoadComponent from '../../common/button/ExcelDownLoadComponent'
 export default {
   name: 'TableComponent',
   components: {
+    ExcelDownLoadComponent
   },
   props: {
     caption: {
