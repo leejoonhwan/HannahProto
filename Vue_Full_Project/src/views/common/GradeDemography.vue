@@ -8,14 +8,16 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col sm="4">
-        <b-row><pie-chart></pie-chart></b-row>
+      <b-col sm="4" lg="4">
+        <b-row>
+          <pie-chart class="chart-wrapper" style="height:250px;margin-top:40px;" height="250"></pie-chart>
+        </b-row>
         <b-row>[등급 산정 기간] 2018/01/01 ~ 2018/03/31</b-row>
         <b-row>[등급 적용 기간] 2018/04/01 ~ 2018/06/30</b-row>
         <b-row>멤버십 등급 산정 기준 조회</b-row>
       </b-col>
-      <b-col>
-        <age-chart></age-chart>
+      <b-col sm="8" lg="8">
+        <age-chart class="chart-wrapper" style="height:320px;margin-top:40px;" height="320"></age-chart>
       </b-col>
     </b-row>
   </b-card>
