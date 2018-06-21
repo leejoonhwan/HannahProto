@@ -8,7 +8,12 @@
         <bar-top-half data-type="mileage-use" bg="bg-info"></bar-top-half>
       </b-col>
     </b-row>
-    <time-series data-type="mileage"></time-series>
+    <b-row>
+      <b-col sm="12" lg="12"><time-series data-type="mileage"></time-series></b-col>
+    </b-row>
+    <b-row>
+      <b-col sm="12" lg="12"><grade-demography></grade-demography></b-col>
+    </b-row>
   </div>
 </template>
 <style scoped>
@@ -17,9 +22,7 @@
 
 import BarTopHalf from '../common/BarTopHalf'
 import TimeSeries from '../common/TimeSeries'
-import MainChartExample from '../common/charts/MainChartExample'
-import DatePicker from '../../../node_modules/vue2-datepicker/index'
-import AgeGenderChart from '../common/charts/AgeGenderChart'
+import GradeDemography from '../common/GradeDemography'
 import cTable from '../dashboard/Table.vue'
 
 export default {
@@ -27,16 +30,13 @@ export default {
   components: {
     BarTopHalf,
     TimeSeries,
-    MainChartExample,
-    DatePicker,
     cTable,
-    AgeGenderChart
+    GradeDemography
   },
   data () {
     return {
       getMemberCount: '/static/dummy/getMemberCount',
-      getVisitCount: '/static/dummy/getMemberVisitCount',
-      value3: new Date()
+      getVisitCount: '/static/dummy/getMemberVisitCount'
     }
   },
   methods: {

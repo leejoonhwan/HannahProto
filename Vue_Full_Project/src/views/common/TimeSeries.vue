@@ -26,7 +26,6 @@
 import moment from 'moment'
 import TimeSeriesChart from './charts/TimeSeriesChart'
 import DateRangePicker from 'vue2-daterange-picker/src/components/DateRangePicker'
-// import DateRangePicker from 'bootstrap-daterangepicker/daterangepicker'
 
 const brandSuccess = '#4dbd74'
 const brandInfo = '#63c2de'
@@ -36,7 +35,6 @@ export default {
   name: 'TimeSeries',
   components: {
     TimeSeriesChart,
-    // DatePicker
     DateRangePicker
   },
   props: ['data-type'],
@@ -47,12 +45,12 @@ export default {
         endDate: '2018-06-15'
       },
       config: {
-        'member': {
+        'membership': {
           title: '멤버십 가입/방문 시계열 통계',
           showDataSelector: true,
           showUnitSelector: true,
           showDatePicker: true,
-          api: '/static/dummy/CardMixHappyChargeData',
+          api: '/static/dummy/getTimeSeries_membership',
           legends: {
             accum: '누적 가입 회원수',
             join: '신규 회원수',
