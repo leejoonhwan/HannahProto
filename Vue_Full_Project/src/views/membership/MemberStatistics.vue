@@ -10,9 +10,7 @@
     </b-row>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
-    <!--<b-col sm="12" lg="12">-->
-      <download-only data-type="membership_demography_timeseries"></download-only>
-    <!--</b-col>-->
+    <download-only data-type="membership_demography_timeseries"></download-only>
     <table-component bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[dataType].title }}</h4>
     <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
     <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
-    <div v-for="item in config[dataType].selectForms.reverse()" :key="item.id">
+    <div v-for="item in config[dataType].selectForms" :key="item.id">
       <div class="float-right px-2" >
         <b-form-select class="innerSelect" :options="item.items" :value="item.default"/>
       </div>
@@ -22,6 +22,8 @@ export default {
   data () {
     return {
       pickedDates: { startDate: '2018-05-01', endDate: '2018-05-27' },
+      startDate: '2018-05-01',
+      endDate: '2018-05-28',
       config: {
         mileage_demography_timeseries: {
           title: '마일리지 이용 성연령 시계열 통계',

@@ -18,7 +18,7 @@
       <b-col sm="5">
       </b-col>
     </b-row>
-    <time-series-chart class="chart-wrapper" style="height:300px;margin-top:40px;" height="300" :chartData='chartData'></time-series-chart>
+    <time-series-chart class="chart-wrapper" style="height:300px;margin-top:10px;" height="300" :chartData='chartData'></time-series-chart>
   </b-card>
 </template>
 
@@ -153,5 +153,8 @@ export default {
   .innerSelect {
     border: none;
     width: auto;
+  }
+  .reportrange-text {
+    border: none !important;
   }
 </style>
