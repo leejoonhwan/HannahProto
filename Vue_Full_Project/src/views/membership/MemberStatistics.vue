@@ -10,6 +10,9 @@
     </b-row>
     <member-timeseries-component></member-timeseries-component>
     <member-gender-age-component></member-gender-age-component>
+    <!--<b-col sm="12" lg="12">-->
+      <download-only data-type="membership_demography_timeseries"></download-only>
+    <!--</b-col>-->
     <table-component bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
   </div>
 </template>
@@ -20,6 +23,7 @@
 import MemberTimeseriesComponent from '../common/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
 import CardChartComponent from '../common/CardChartComponent'
+import DownloadOnly from '../common/DownloadOnly'
 import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
 import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
 import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
@@ -48,6 +52,7 @@ export default {
     cTable,
     AmchartExample,
     CardChartComponent,
+    DownloadOnly,
     MemberVisitCardBarChart,
     MemberGenderAgeComponent,
     MemberTimeseriesComponent,

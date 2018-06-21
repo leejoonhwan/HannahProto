@@ -1,0 +1,102 @@
+<template>
+  <b-card>
+    <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[dataType].title }}</h4>
+    <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
+    <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
+    <div v-if="config[dataType].selectForms != undefined" v-for="item in config[dataType].selectForms.reverse()" :key="item.id">
+      <div class="float-right px-2" >
+        <b-form-select style="width:auto;" id="basicSelectLg" :options="item.items" :value="item.default"/>
+      </div>
+    </div>
+  </b-card>
+</template>
+
+<script>
+import DateRangePicker from 'vue2-daterange-picker'
+export default {
+  name: 'DownloadOnly',
+  components: {
+    DateRangePicker
+  },
+  props: ['dataType'],
+  data () {
+    return {
+      pickedDates: { startDate: '2018-05-01', endDate: '2018-05-27' },
+      config: {
+        mileage_demography_timeseries: {
+          title: '마일리지 이용 성연령 시계열 통계',
+          showDatePicker: true,
+          selectForms: [
+            {
+              id: 1,
+              items: [
+                { value: 'all', text: '멤버십 회원' },
+                { value: 'family', text: 'Family 등급 회원' },
+                { value: 'vip', text: 'VIP 등급 회원' }
+              ],
+              default: 'all'
+            }, {
+              id: 2,
+              items: [
+                { value: 'save', text: '적립 건수 기준' },
+                { value: 'use', text: '사용 건수 기준' }
+              ],
+              default: 'save'
+            }
+          ]
+        },
+        membership_demography_timeseries: {
+          title: '멤버십 회원 성연령별 시계열 통계',
+          showDatePicker: true,
+          selectForms: [
+            {
+              id: 1,
+              items: [
+                { value: 'accum_join', text: '누적 가입 회원' },
+                { value: 'accum_dormant', text: '누적 휴면 회원' },
+                { value: 'new_join', text: '신규 회원' },
+                { value: 'dormant', text: '휴면 회원' },
+                { value: 'leave', text: '탈퇴 회원' },
+                { value: 'visit_count', text: '멤버십 방문 (건수)' },
+                { value: 'visit_user', text: '멤버십 방문 (회원수)' }
+              ],
+              default: 'new_join'
+            }, {
+              id: 2,
+              items: [
+                { value: 'daily', text: '일간' },
+                { value: 'weekly', text: '주간' },
+                { value: 'monthly', text: '월간' }
+              ],
+              default: 'daily'
+            }
+          ]
+        },
+        membership_grade_timeseries: {
+          title: '멤버십 등급 구성 시계열 통계',
+          showDatePicker: true,
+          selectForms: []
+        },
+        membership_grade_demography_timeseries: {
+          title: '멤버십 회원 성연령별 시계열 통계',
+          showDatePicker: true,
+          selectForms: [
+            {
+              id: 1,
+              items: [
+                { value: 'family', text: 'Family 등급 회원' },
+                { value: 'vip', text: 'VIP 등급 회원' }
+              ],
+              default: 'family'
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

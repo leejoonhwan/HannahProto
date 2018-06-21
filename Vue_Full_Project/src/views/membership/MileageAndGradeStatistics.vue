@@ -12,7 +12,16 @@
       <b-col sm="12" lg="12"><time-series data-type="mileage"></time-series></b-col>
     </b-row>
     <b-row>
+      <b-col sm="12" lg="12"><download-only data-type="mileage_demography_timeseries"></download-only></b-col>
+    </b-row>
+    <b-row>
       <b-col sm="12" lg="12"><grade-demography></grade-demography></b-col>
+    </b-row>
+    <b-row>
+      <b-col sm="12" lg="12"><download-only data-type="membership_grade_timeseries"></download-only></b-col>
+    </b-row>
+    <b-row>
+      <b-col sm="12" lg="12"><download-only data-type="membership_grade_demography_timeseries"></download-only></b-col>
     </b-row>
   </div>
 </template>
@@ -23,6 +32,7 @@
 import BarTopHalf from '../common/BarTopHalf'
 import TimeSeries from '../common/TimeSeries'
 import GradeDemography from '../common/GradeDemography'
+import DownloadOnly from '../common/DownloadOnly'
 import cTable from '../dashboard/Table.vue'
 
 export default {
@@ -31,7 +41,8 @@ export default {
     BarTopHalf,
     TimeSeries,
     cTable,
-    GradeDemography
+    GradeDemography,
+    DownloadOnly
   },
   data () {
     return {
