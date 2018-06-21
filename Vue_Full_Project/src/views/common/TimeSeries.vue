@@ -5,12 +5,12 @@
         <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[this.dataType].title }}</h4>
         <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
         <i class="fa fa-refresh fa-2x mt-1 float-right px-2" style="color: #3b5998"></i>
-        <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
+        <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
         <div v-if="config[dataType].showUnitSelector" class="float-right px-2" >
-          <b-form-select style="width:auto;" id="basicSelectLg" :options="['일간','주간','월간']" value="일간"/>
+          <b-form-select class="innerSelect" :options="['일간','주간','월간']" value="일간"/>
         </div>
         <div v-if="config[dataType].showDataSelector" class="float-right px-2">
-          <b-form-select style="width:auto;" id="basicSelectLg" :options="['멤버십 회원']" value="멤버십 회원"/>
+          <b-form-select class="innerSelect" :options="['멤버십 회원']" value="멤버십 회원"/>
         </div>
       </b-col>
     </b-row>
@@ -145,8 +145,13 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
+  /*@import '@/assets/styles/date_range_picker.css';*/
   @import "https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css";
   /*@import "../../../node_modules/vue2-daterange-picker/dist/docs/css/vue-daterange-picker.e98ed5d6eab031414deb18d55f767b9a.css";*/
   /*@import "../../../node_modules/vue2-daterange-picker/dist/docs/css/docs.d8d8151b0ce6e516533cc0e79ff22172.css";*/
+  .innerSelect {
+    border: none;
+    width: auto;
+  }
 </style>

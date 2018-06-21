@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style scoped>
-
+#basicSelectLg {
+  border: none;
+  box-shadow: none;
+}
 </style>
