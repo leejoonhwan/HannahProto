@@ -3,9 +3,9 @@
     <b-card-body class="pb-0">
       <h4 class="mb-1">{{ this.config[dataType].title }}</h4>
       <h6 class="mb-0">{{ this.config[dataType].desc }}</h6>
-      <h6 class="mb-2">4/29 기준</h6>
+      <h6 class="mb-0">4/29 기준</h6>
     </b-card-body>
-    <bar-top-half-chart class="chart-wrapper px-3" style="height:140px;" :chartData='chartData' />
+    <bar-top-half-chart class="chart-wrapper px-3" style="height:120px;" :chartData='chartData' />
   </b-card>
 </template>
 
