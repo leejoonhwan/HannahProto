@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <h4 id="traffic" class="card-title mb-0 float-left">멤버십 등급 구성 통계</h4>
-        <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
+        <i class="icon-cloud-download icons float-right p-2" style="color:green;"></i>
         <!--<date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>-->
       </b-col>
     </b-row>
@@ -39,5 +39,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .icons {
+    font-size: 18px;
+    padding-right: 7px;
+    font-weight: bold;
+  }
 </style>

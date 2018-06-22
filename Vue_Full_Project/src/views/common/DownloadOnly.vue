@@ -1,7 +1,7 @@
 <template>
   <b-card>
     <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[dataType].title }}</h4>
-    <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
+    <i class="icon-cloud-download icons float-right p-2" style="color:green;"></i>
     <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
     <div v-for="item in config[dataType].selectForms" :key="item.id">
       <div class="float-right px-2" >
@@ -104,5 +104,10 @@ export default {
   border: none;
   box-shadow: none;
   width: auto;
+}
+.icons {
+  font-size: 18px;
+  padding-right: 7px;
+  font-weight: bold;
 }
 </style>

@@ -15,7 +15,8 @@
       <b-col sm="12">
         <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage">
           <template slot="actions"  slot-scope="data">
-            <i class="fa fa-download fa-2x mt-1" style="color: #7ab800" v-on:click = "downloadExcel(data.item.merchantId)" v-html="data.value"></i>
+            <!--<i class="fa fa-download fa-2x mt-1" style="color: #7ab800" v-on:click = "downloadExcel(data.item.merchantId)" v-html="data.value"></i>-->
+            <i class="icon-cloud-download icons p-2" style="color:green;" v-on:click = "downloadExcel(data.item.merchantId)" v-html="data.value"></i>
           </template>
         </b-table>
       </b-col>
@@ -143,3 +144,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .icons {
+    font-size: 18px;
+    padding-right: 7px;
+    font-weight: bold;
+  }
+</style>

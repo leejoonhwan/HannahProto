@@ -3,8 +3,8 @@
     <b-row>
       <b-col>
         <h4 id="traffic" class="card-title mb-0 float-left">{{ this.config[this.dataType].title }}</h4>
-        <i class="fa fa-download fa-2x mt-1 float-right px-2" style="color: #7ab800" ></i>
-        <i class="fa fa-refresh fa-2x mt-1 float-right px-2" style="color: #3b5998"></i>
+        <i id="download" class="icon-cloud-download icons float-right p-2" style="color:green;"></i>
+        <i id="refresh" class="icon-reload icons float-right p-2" style="color:mediumblue;"></i>
         <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
         <div v-if="config[dataType].showUnitSelector" class="float-right px-2" >
           <b-form-select class="innerSelect" :options="['일간','주간','월간']" value="일간"/>
@@ -156,5 +156,10 @@ export default {
   }
   .reportrange-text {
     border: none !important;
+  }
+  .icons {
+    font-size: 18px;
+    padding-right: 7px;
+    font-weight: bold;
   }
 </style>
