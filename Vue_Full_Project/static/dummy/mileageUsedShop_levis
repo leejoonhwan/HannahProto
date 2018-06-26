@@ -1,0 +1,167 @@
+{
+    "title": "마일리지 이용 매장 통계",
+    "count": 23,
+    "data": [
+        {
+            "merchantId": "33832722",
+            "merchantName": "리바이스 신세계 김해점",
+            "address": "경남 김해시 김해대로 2232",
+            "savingPt": 12355,
+            "usedPt": 2234
+        },
+        {
+            "merchantId": "33832719",
+            "merchantName": "리바이스 스타필드코엑스점",
+            "address": "서울 강남구 영동대로 513",
+            "savingPt": 21155,
+            "usedPt": 3234
+        },
+        {
+            "merchantId": "33832720",
+            "merchantName": "리바이스 갤러리아진주점",
+            "address": "경남 진주시 진주대로 1095",
+            "savingPt": 11655,
+            "usedPt": 1234
+        },
+        {
+            "merchantId": "33832721",
+            "merchantName": "리바이스 롯데마산점",
+            "address": "경남 창원시 마산합포구 동서동로 18",
+            "savingPt": 10255,
+            "usedPt": 1034
+        },
+        {
+            "merchantId": "33832718",
+            "merchantName": "리바이스 뉴코아강남점",
+            "address": "서울 서초구 잠원로 51",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "33832717",
+            "merchantName": "리바이스 롯데스타시티점",
+            "address": "서울 광진구 능동로 92",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "33832714",
+            "merchantName": "리바이스 현대미아점",
+            "address": "서울 성북구 동소문로 315",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "33832715",
+            "merchantName": "리바이스 신세계경기점",
+            "address": "경기 용인시 수지구 포은대로 536",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "33832716",
+            "merchantName": "리바이스 신세계하남점",
+            "address": "경기 하남시 미사대로 750",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "33832711",
+            "merchantName": "리바이스 현대판교점",
+            "address": "경기 성남시 분당구 판교역로146번길 20",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "43832722",
+            "merchantName": "리바이스 신세계 김해점2",
+            "address": "경남 김해시 김해대로 2232",
+            "savingPt": 12355,
+            "usedPt": 2234
+        },
+        {
+            "merchantId": "43832719",
+            "merchantName": "리바이스 스타필드코엑스점2",
+            "address": "서울 강남구 영동대로 513",
+            "savingPt": 21155,
+            "usedPt": 3234
+        },
+        {
+            "merchantId": "43832720",
+            "merchantName": "리바이스 갤러리아진주점2",
+            "address": "경남 진주시 진주대로 1095",
+            "savingPt": 11655,
+            "usedPt": 1234
+        },
+        {
+            "merchantId": "43832721",
+            "merchantName": "리바이스 롯데마산점2",
+            "address": "경남 창원시 마산합포구 동서동로 18",
+            "savingPt": 10255,
+            "usedPt": 1034
+        },
+        {
+            "merchantId": "43832718",
+            "merchantName": "리바이스 뉴코아강남점2",
+            "address": "서울 서초구 잠원로 51",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "43832717",
+            "merchantName": "리바이스 롯데스타시티점2",
+            "address": "서울 광진구 능동로 92",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "43832714",
+            "merchantName": "리바이스 현대미아점2",
+            "address": "서울 성북구 동소문로 315",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "43832715",
+            "merchantName": "리바이스 신세계경기점2",
+            "address": "경기 용인시 수지구 포은대로 536",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "43832716",
+            "merchantName": "리바이스 신세계하남점2",
+            "address": "경기 하남시 미사대로 750",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "43832711",
+            "merchantName": "리바이스 현대판교점2",
+            "address": "경기 성남시 분당구 판교역로146번길 20",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "53832715",
+            "merchantName": "리바이스 신세계경기점3",
+            "address": "경기 용인시 수지구 포은대로 536",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "53832716",
+            "merchantName": "리바이스 신세계하남점3",
+            "address": "경기 하남시 미사대로 750",
+            "savingPt": 19955,
+            "usedPt": 2138
+        },
+        {
+            "merchantId": "53832711",
+            "merchantName": "리바이스 현대판교점3",
+            "address": "경기 성남시 분당구 판교역로146번길 20",
+            "savingPt": 19955,
+            "usedPt": 2138
+        }
+    ]
+}
