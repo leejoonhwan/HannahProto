@@ -6,19 +6,19 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
-        <div class="float-left px-2">
-          <b-form-select id="basicSelectLg" class="innerSelect" v-model="rowSizeSelected" :options="rowSizeItems"/>
+      <b-col class="p-2 px-2 align-content-center">
+        <div class="float-left">
+          <b-form-select id="basicSelectLg" class="innerSelect" v-model="perPage" :options="perPageOption"/>
         </div>
-        <download :downloadUrl="downloadUrl" class="float-right"></download>
-        <div class="float-right px-2 col-2">검색 <i></i></div>
+        <download :downloadUrl="downloadUrl" class="float-right px-3"></download>
+        <b-form-input class="float-right px-2 col-3" v-model="searchWord" type="text" placeholder="검색어를 입력하세요"></b-form-input>
+        <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
       </b-col>
     </b-row>
     <b-row>
       <b-col sm="12">
-        <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="rows" :fields="config[dataType].fields" :current-page="currentPage" :per-page="rowSizeSelected">
+        <b-table :filter="searchWord" :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="rows" :fields="config[dataType].fields" :current-page="currentPage" :per-page="perPage" @filtered="onFiltered">
           <template slot="actions" slot-scope="data">
-            <!--<i class="icon-cloud-download icons px-2" style="color:green;" v-on:click = "downloadExcel(data.item.merchantId)" v-html="data.value"></i>-->
             <download :downloadUrl="downloadUrl"></download>
           </template>
         </b-table>
@@ -26,14 +26,10 @@
     </b-row>
     <b-row>
       <b-col sm="4">
-        <nav>
-          <h6 class="card-title mb-0">{{totalCount}}개 중 {{firstItem}}-{{lastItem}}번 표시</h6>
-        </nav>
+        <h6 class="card-title mb-0">{{totalRows}}개 중 {{firstItem}}-{{lastItem}}번 표시</h6>
       </b-col>
       <b-col sm="8">
-        <nav>
-          <b-pagination size="sm" align="right" :total-rows="totalCount" :per-page="rowSizeSelected" v-model="currentPage" prev-text="이전" next-text="다음" hide-goto-end-buttons/>
-        </nav>
+        <b-pagination size="sm" align="right" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" prev-text="이전" next-text="다음" hide-goto-end-buttons/>
       </b-col>
     </b-row>
   </b-card>
@@ -43,10 +39,15 @@
 
 // import moment from 'moment'
 import numeral from 'numeral'
+import DateRangePicker from 'vue2-daterange-picker'
 import Download from './button/Download'
 
 export default {
   name: 'TableCard',
+  components: {
+    DateRangePicker,
+    Download
+  },
   props: {
     dataType: '',
     caption: {
@@ -74,18 +75,20 @@ export default {
       default: false
     }
   },
-  components: {
-    Download
-  },
   data: () => {
     return {
       currentPage: 1,
-      rowSizeSelected: 10,
-      rowSizeItems: [
+      perPage: 10,
+      perPageOption: [
         {value: 10, text: '10개씩 보기'},
         {value: 25, text: '25개씩 보기'},
         {value: 50, text: '50개씩 보기'}
       ],
+      totalRows: 0,
+      searchWord: null,
+      pickedDates: { startDate: '2018-05-01', endDate: '2018-05-27' },
+      startDate: '2018-05-01',
+      endDate: '2018-05-28',
       rows: [],
       config: {
         'prefer_shop': {
@@ -118,10 +121,15 @@ export default {
         .then(res => res.json())
         .then(response => {
           this.rows = response.data
+          this.totalRows = this.rows.length
         })
     },
     numberFormat (val) {
       return numeral(val).format('0,0')
+    },
+    onFiltered (filteredItems) {
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
     }
   },
   created () {
@@ -131,17 +139,14 @@ export default {
     membershipId () {
       return this.$store.state.memberShipStatus
     },
-    totalCount () {
-      return this.rows.length
-    },
     downloadUrl () {
       return this.config[this.dataType].api + 'Excel'
     },
     firstItem () {
-      return (this.rowSizeSelected * (this.currentPage - 1)) + 1
+      return (this.perPage * (this.currentPage - 1)) + 1
     },
     lastItem () {
-      return (this.totalCount >= this.rowSizeSelected * this.currentPage) ? this.rowSizeSelected * this.currentPage : this.totalCount
+      return (this.totalRows >= this.perPage * this.currentPage) ? this.perPage * this.currentPage : this.totalRows
     }
   },
   watch: {
@@ -153,11 +158,6 @@ export default {
 </script>
 
 <style scoped>
-  .icons {
-    font-size: 18px;
-    padding-right: 7px;
-    font-weight: bold;
-  }
   .innerSelect {
     border: none;
     box-shadow: none;
