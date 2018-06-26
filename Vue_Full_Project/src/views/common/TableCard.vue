@@ -39,7 +39,8 @@
 
 // import moment from 'moment'
 import numeral from 'numeral'
-import DateRangePicker from 'vue2-daterange-picker'
+// import DateRangePicker from 'vue2-daterange-picker'
+import DateRangePicker from './datepicker/DateRangePicker'
 import Download from './button/Download'
 
 export default {

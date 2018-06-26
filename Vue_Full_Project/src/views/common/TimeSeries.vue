@@ -25,7 +25,8 @@
 <script>
 import moment from 'moment'
 import TimeSeriesChart from './charts/TimeSeriesChart'
-import DateRangePicker from 'vue2-daterange-picker/src/components/DateRangePicker'
+// import DateRangePicker from 'vue2-daterange-picker'
+import DateRangePicker from './datepicker/DateRangePicker'
 
 const brandSuccess = '#4dbd74'
 const brandInfo = '#63c2de'

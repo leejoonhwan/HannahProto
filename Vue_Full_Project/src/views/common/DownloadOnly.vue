@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import DateRangePicker from 'vue2-daterange-picker'
+// import DateRangePicker from 'vue2-daterange-picker'
+import DateRangePicker from './datepicker/DateRangePicker'
 export default {
   name: 'DownloadOnly',
   components: {
