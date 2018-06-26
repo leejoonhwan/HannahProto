@@ -152,6 +152,7 @@ export default {
   watch: {
     membershipId (val) {
       this.getTableData(val)
+      this.searchWord = ''
     }
   }
 }
