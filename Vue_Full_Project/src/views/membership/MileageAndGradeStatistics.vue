@@ -15,6 +15,9 @@
       <b-col sm="12" lg="12"><download-only data-type="mileage_demography_timeseries"></download-only></b-col>
     </b-row>
     <b-row>
+      <b-col sm="12" lg="12"><table-card dataType="mileage_used_shop"></table-card></b-col>
+    </b-row>
+    <b-row>
       <b-col sm="12" lg="12"><grade-demography></grade-demography></b-col>
     </b-row>
     <b-row>
@@ -33,14 +36,14 @@ import BarTopHalf from '../common/BarTopHalf'
 import TimeSeries from '../common/TimeSeries'
 import GradeDemography from '../common/GradeDemography'
 import DownloadOnly from '../common/DownloadOnly'
-import cTable from '../dashboard/Table.vue'
+import TableCard from '../common/TableCard'
 
 export default {
   name: 'memberStatistics',
   components: {
     BarTopHalf,
     TimeSeries,
-    cTable,
+    TableCard,
     GradeDemography,
     DownloadOnly
   },
