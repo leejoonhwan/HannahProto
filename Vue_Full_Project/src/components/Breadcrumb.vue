@@ -32,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '>';
+}
+</style>
