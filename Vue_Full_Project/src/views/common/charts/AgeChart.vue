@@ -28,7 +28,6 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        // type: 'horizontalBar',
         scales: {
           xAxes: [{
             stacked: true,
@@ -45,7 +44,7 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              return Math.abs(tooltipItem.xLabel) + '%'
+              return data.datasets[tooltipItem.datasetIndex].label + ' : ' + Math.abs(tooltipItem.xLabel) + '%'
             }
           }
         }

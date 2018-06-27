@@ -18,8 +18,8 @@ export default {
             // blue: 'rgb(54, 162, 235)',
             // purple: 'rgb(153, 102, 255)',
             // grey: 'rgb(201, 203, 207)'
-            backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(255, 159, 64, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)'],
-            borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)'],
+            backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(255, 159, 64, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)', 'rgba(54, 162, 235, 0.5)'],
+            borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(54, 162, 235)'],
             borderWidth: 1,
             data: [40, 20, 10, 30]
           }
@@ -32,8 +32,7 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              console.log(tooltipItem)
-              return Math.abs(tooltipItem.xLabel) + '%'
+              return data.labels[tooltipItem.index] + ' 등급 : ' + Math.abs(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]) + '%'
             }
           }
         }
