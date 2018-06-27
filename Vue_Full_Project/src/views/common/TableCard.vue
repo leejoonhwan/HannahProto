@@ -11,7 +11,7 @@
           <b-form-select id="basicSelectLg" class="innerSelect" v-model="perPage" :options="perPageOption"/>
         </div>
         <download :downloadUrl="downloadUrl" class="float-right px-3"></download>
-        <b-form-input class="float-right px-2 col-3" v-model="searchWord" type="text" placeholder="검색어를 입력하세요"></b-form-input>
+        <b-form-input class="float-right p-1 px-2 col-3" v-model="searchWord" type="text" placeholder="검색어를 입력하세요"></b-form-input>
         <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
       </b-col>
     </b-row>
