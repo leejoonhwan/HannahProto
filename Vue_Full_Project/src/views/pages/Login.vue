@@ -9,7 +9,7 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
 
-                <form @submit.prevent="moveDashboard(loginId, password)">
+                <form @submit.prevent="getSession(loginId, password)">
                   <b-input-group class="mb-3">
                     <b-input-group-prepend><b-input-group-text><i class="icon-user"></i></b-input-group-text></b-input-group-prepend>
                     <input type="text" class="form-control" v-model="loginId" placeholder="Username">
@@ -37,7 +37,7 @@
                 <div>
                   <h2>Sign up</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <b-button variant="primary" class="active mt-3" v-on:click = "moveDashboard">Register Now!</b-button>
+                  <b-button variant="primary" class="active mt-3" v-on:click = "getSession">Register Now!</b-button>
                 </div>
               </b-card-body>
             </b-card>
@@ -57,13 +57,40 @@ export default {
   data () {
     return {
       loginId: '',
-      password: ''
+      password: '',
+      url: 'http://localhost:8080/hannah/user/login'
     }
   },
   methods: {
     moveDashboard (loginId, password) {
       console.log(loginId, password)
       this.$router.push('../../dashboard')
+    },
+    getSession (loginId, password) {
+      var params = {}
+      params.username = loginId
+      params.password = password
+      fetch(this.url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }).then((res) => res.json())
+        .then((response) => {
+          // 로그인 정보
+          console.log(JSON.stringify(response))
+
+          let username = response.username
+          let authorities = response.authorities
+          let sessionToken = response.sessionToken
+          this.$session.set('username', username)
+          this.$session.set('authorities', authorities)
+          this.$session.set('sessionToken', sessionToken)
+
+          this.$router.push('../../dashboard')
+        })
     }
   }
 }
