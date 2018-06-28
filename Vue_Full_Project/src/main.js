@@ -6,7 +6,8 @@ import App from './App'
 import router from './router'
 import store from './vuex/store'
 import axios from 'axios'
-
+import VueSessionStorage from 'vue-sessionstorage'
+Vue.use(VueSessionStorage)
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$http = axios
 Vue.use(BootstrapVue)
