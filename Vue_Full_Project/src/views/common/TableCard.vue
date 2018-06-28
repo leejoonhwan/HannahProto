@@ -110,7 +110,7 @@ export default {
             { key: 'usedPt', label: '사용 포인트', sortable: true, formatter: 'numberFormat', tdClass: 'text-center', thClass: ['table-active', 'text-center'] },
             { key: 'actions', label: 'Excel', tdClass: 'text-center', thClass: ['table-active', 'text-center'] }
           ],
-          api: 'static/dummy/mileageUsedShop'
+          api: process.env.API_PREFIX + '/mileage/usedShop'
         }
       },
       rowSizeTemp: ''
@@ -118,6 +118,7 @@ export default {
   },
   methods: {
     getTableData (membershipId) {
+      console.log(this.config[this.dataType].api)
       fetch(this.config[this.dataType].api + '_' + membershipId)
         .then(res => res.json())
         .then(response => {
