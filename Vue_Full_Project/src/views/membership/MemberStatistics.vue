@@ -2,10 +2,10 @@
   <div class="animated fadeIn">
     <b-row>
       <b-col sm="6" lg="6">
-        <CardChartComponent componentName="memberCount"></CardChartComponent>
+        <bar-top-half data-type="member-count" bg="bg-primary"></bar-top-half>
       </b-col>
       <b-col sm="6" lg="6">
-        <CardChartComponent componentName="memberVisit"></CardChartComponent>
+        <bar-top-half data-type="visit-count" bg="bg-info"></bar-top-half>
       </b-col>
     </b-row>
     <member-timeseries-component></member-timeseries-component>
@@ -17,6 +17,8 @@
 <style scoped>
 </style>
 <script>
+
+import BarTopHalf from '../common/BarTopHalf'
 
 import MemberTimeseriesComponent from '../common/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
@@ -39,6 +41,7 @@ import store from '../../vuex/store'
 export default {
   name: 'memberStatistics',
   components: {
+    BarTopHalf,
     Callout,
     CardLine1ChartExample,
     CardLine2ChartExample,
