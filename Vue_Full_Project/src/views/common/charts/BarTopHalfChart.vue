@@ -34,8 +34,6 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              console.log(data)
-              // return data.labels[tooltipItem.index] + ' 등급 : ' + Math.abs(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]) + '%'
               return data.labels[tooltipItem.index] +
                 ' 당월 누적 ' + numeral(data.datasets[1].data[tooltipItem.index]).format('0,0') + ' ' + data.unit + ' ' +
                 '(당일 ' + numeral(data.datasets[0].data[tooltipItem.index]).format('0,0') + ' ' + data.unit + ')'

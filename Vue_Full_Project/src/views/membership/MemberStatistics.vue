@@ -14,27 +14,13 @@
     <table-component bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
   </div>
 </template>
-<style scoped>
-</style>
+
 <script>
-
 import BarTopHalf from '../common/BarTopHalf'
-
 import MemberTimeseriesComponent from '../common/MemberTimeseriesComponent'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
-import CardChartComponent from '../common/CardChartComponent'
 import DownloadOnly from '../common/DownloadOnly'
-import MemberVisitCardBarChart from '../dashboard/MemberVisitCardBarChart'
-import CardLine1ChartExample from '../dashboard/CardLine1ChartExample'
-import CardLine2ChartExample from '../dashboard/CardLine2ChartExample'
-import CardLine3ChartExample from '../dashboard/CardLine3ChartExample'
-import CardBarChartExample from '../dashboard/CardBarChartExample'
-import SocialBoxChartExample from '../dashboard/SocialBoxChartExample'
-import CalloutChartExample from '../dashboard/CalloutChartExample'
-import { Callout } from '../../components/'
-import DatePicker from '../../../node_modules/vue2-datepicker/index'
 import AmchartExample from '../dashboard/AmchartExample'
-import cTable from '../dashboard/Table.vue'
 import TableComponent from '../common/table/Table.vue'
 import store from '../../vuex/store'
 
@@ -42,19 +28,8 @@ export default {
   name: 'memberStatistics',
   components: {
     BarTopHalf,
-    Callout,
-    CardLine1ChartExample,
-    CardLine2ChartExample,
-    CardLine3ChartExample,
-    CardBarChartExample,
-    SocialBoxChartExample,
-    CalloutChartExample,
-    DatePicker,
-    cTable,
     AmchartExample,
-    CardChartComponent,
     DownloadOnly,
-    MemberVisitCardBarChart,
     MemberGenderAgeComponent,
     MemberTimeseriesComponent,
     TableComponent
@@ -136,36 +111,5 @@ export default {
 </script>
 
 <style scoped>
-  .demo {
-    margin:20px;
-  }
-  .label{
-    display: inline-block;
-    margin-right: 1em;
-  }
-  .pre {
-    padding: 16px;
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f6f8fa;
-    border-radius: 3px;
-  }
-  .example {
-    padding: 45px;
-    word-wrap: break-word;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-  }
-  .example > .demo {
-    display: inline-block;
-  }
-  .tips {
-    margin: 0;
-    padding: 0 1em;
-    color: #6a737d;
-    border-left: 0.25em solid #dfe2e5;
-  }
+
 </style>
