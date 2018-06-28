@@ -64,6 +64,7 @@ export default {
     makeChartData (rawJson) {
       let result = {
         labels: [],
+        unit: null,
         datasets: [
           {
             label: '',
@@ -86,11 +87,13 @@ export default {
         result.datasets[1].data.push(d[this.config[this.dataType].fields[1]])
         result.datasets[0].backgroundColor.push([0, 6].includes(moment(d.date, 'YYYYMMDD').day()) ? 'rgba(255,55,55,.3)' : 'rgba(255,255,255,.3)')
       }
+
       this.titleString = this.config[this.dataType].title.replace('{{lastDate}}', result.labels.slice(-1)[0])
       this.descString = this.config[this.dataType].desc
         .replace('{{lastDaily}}', numeral(result.datasets[0].data.slice(-1)[0]).format('0,0'))
         .replace('{{lastAccm}}', numeral(result.datasets[1].data.slice(-1)[0]).format('0,0'))
-      console.log(result)
+
+      result.unit = ['member-count', 'visit-count'].includes(this.dataType) ? '명' : 'PT'
       return result
     }
   },
