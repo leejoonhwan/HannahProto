@@ -42,6 +42,7 @@ import numeral from 'numeral'
 // import DateRangePicker from 'vue2-daterange-picker'
 import DateRangePicker from './datepicker/DateRangePicker'
 import Download from './button/Download'
+import DhUtil from '../../utillib/util.js'
 
 export default {
   name: 'TableCard',
@@ -110,7 +111,7 @@ export default {
             { key: 'usedPt', label: '사용 포인트', sortable: true, formatter: 'numberFormat', tdClass: 'text-center', thClass: ['table-active', 'text-center'] },
             { key: 'actions', label: 'Excel', tdClass: 'text-center', thClass: ['table-active', 'text-center'] }
           ],
-          api: 'static/dummy/mileageUsedShop'
+          api: '/mileage/usedShop'
         }
       },
       rowSizeTemp: ''
@@ -118,7 +119,7 @@ export default {
   },
   methods: {
     getTableData (membershipId) {
-      fetch(this.config[this.dataType].api + '_' + membershipId)
+      fetch(DhUtil.makeApiUrl(this.config[this.dataType].api) + '_' + membershipId)
         .then(res => res.json())
         .then(response => {
           this.rows = response.data

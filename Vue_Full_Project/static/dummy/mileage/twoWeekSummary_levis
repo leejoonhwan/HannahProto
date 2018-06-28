@@ -1,0 +1,103 @@
+{
+    "membershipId": "levis",
+    "dataSet": [
+        {
+            "date": "20180614",
+            "savingPt": 4321,
+            "savingAccmPt": 367200,
+            "usedPt": 1000,
+            "usedAccmPt": 95200
+        },
+        {
+            "date": "20180615",
+            "savingPt": 3300,
+            "savingAccmPt": 370500,
+            "usedPt": 1200,
+            "usedAccmPt": 96400
+        },
+        {
+            "date": "20180616",
+            "savingPt": 8700,
+            "savingAccmPt": 379200,
+            "usedPt": 4000,
+            "usedAccmPt": 99200
+        },
+        {
+            "date": "20180617",
+            "savingPt": 8100,
+            "savingAccmPt": 387300,
+            "usedPt": 5000,
+            "usedAccmPt": 140200
+        },
+        {
+            "date": "20180618",
+            "savingPt": 3800,
+            "savingAccmPt": 391100,
+            "usedPt": 1500,
+            "usedAccmPt": 141700
+        },
+        {
+            "date": "20180619",
+            "savingPt": 4300,
+            "savingAccmPt": 395400,
+            "usedPt": 1800,
+            "usedAccmPt": 143500
+        },
+        {
+            "date": "20180620",
+            "savingPt": 5600,
+            "savingAccmPt": 401000,
+            "usedPt": 2000,
+            "usedAccmPt": 145500
+        },
+        {
+            "date": "20180621",
+            "savingPt": 6300,
+            "savingAccmPt": 407300,
+            "usedPt": 4500,
+            "usedAccmPt": 150000
+        },
+        {
+            "date": "20180622",
+            "savingPt": 4100,
+            "savingAccmPt": 411400,
+            "usedPt": 500,
+            "usedAccmPt": 150500
+        },
+        {
+            "date": "20180623",
+            "savingPt": 9300,
+            "savingAccmPt": 420700,
+            "usedPt": 11000,
+            "usedAccmPt": 161500
+        },
+        {
+            "date": "20180624",
+            "savingPt": 11700,
+            "savingAccmPt": 432400,
+            "usedPt": 5400,
+            "usedAccmPt": 166900
+        },
+        {
+            "date": "20180625",
+            "savingPt": 6800,
+            "savingAccmPt": 439200,
+            "usedPt": 0,
+            "usedAccmPt": 166900
+        },
+        {
+            "date": "20180626",
+            "savingPt": 3300,
+            "savingAccmPt": 442500,
+            "usedPt": 1200,
+            "usedAccmPt": 168100
+        },
+        {
+            "date": "20180627",
+            "savingPt": 7100,
+            "savingAccmPt": 449600,
+            "usedPt": 1000,
+            "usedAccmPt": 169100
+        }
+    ]
+}
