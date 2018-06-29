@@ -165,6 +165,7 @@ export default {
       this.start = new Date(value)
       this.end = new Date(value)
       this.open = false
+      this.$emit('update', {startDate: moment(this.start).format('YYYY-MM-DD'), endDate: moment(this.end).format('YYYY-MM-DD')})
     },
     hoverDate (value) {
       let dt = new Date(value)
@@ -183,7 +184,7 @@ export default {
     },
     clickedApply () {
       this.open = false
-      this.$emit('update', {startDate: this.start, endDate: this.end})
+      this.$emit('update', {startDate: moment(this.start).format('YYYY-MM-DD'), endDate: moment(this.end).format('YYYY-MM-DD')})
     },
     clickAway () {
       if (this.open) {
