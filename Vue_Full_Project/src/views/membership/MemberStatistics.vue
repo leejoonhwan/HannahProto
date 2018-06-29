@@ -8,7 +8,9 @@
         <bar-top-half data-type="visit-count" bg="bg-info"></bar-top-half>
       </b-col>
     </b-row>
-    <member-timeseries-component></member-timeseries-component>
+    <b-row>
+      <b-col sm="12" lg="12"><time-series data-type="membership"></time-series></b-col>
+    </b-row>
     <member-gender-age-component></member-gender-age-component>
     <download-only data-type="membership_demography_timeseries"></download-only>
     <table-component bordered :items="tableData" :fields="fieldData" dataType="prefer-merchant"></table-component>
@@ -17,7 +19,7 @@
 
 <script>
 import BarTopHalf from '../common/BarTopHalf'
-import MemberTimeseriesComponent from '../common/MemberTimeseriesComponent'
+import TimeSeries from '../common/TimeSeries'
 import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
 import DownloadOnly from '../common/DownloadOnly'
 import AmchartExample from '../dashboard/AmchartExample'
@@ -28,10 +30,10 @@ export default {
   name: 'memberStatistics',
   components: {
     BarTopHalf,
+    TimeSeries,
     AmchartExample,
     DownloadOnly,
     MemberGenderAgeComponent,
-    MemberTimeseriesComponent,
     TableComponent
   },
   store,

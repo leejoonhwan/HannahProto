@@ -1,0 +1,146 @@
+{
+  "membershipId": "happyCharge",
+  "totalCount": 14,
+  "dataSet": [
+    {
+      "date": "20180614",
+      "newUser": 30,
+      "accmUser": 1030,
+      "dormantUser": 4,
+      "withdrawUser": 1,
+      "visitUser": 30,
+      "visitCnt": 44,
+      "visitUserRatio": 23.4
+    },
+    {
+      "date": "20180615",
+      "newUser": 25,
+      "accmUser": 1055,
+      "dormantUser": 2,
+      "withdrawUser": 0,
+      "visitUser": 22,
+      "visitCnt": 35,
+      "visitUserRatio": 24.4
+    },
+    {
+      "date": "20180616",
+      "newUser": 46,
+      "accmUser": 1101,
+      "dormantUser": 0,
+      "withdrawUser": 0,
+      "visitUser": 66,
+      "visitCnt": 98,
+      "visitUserRatio": 30.6
+    },
+    {
+      "date": "20180617",
+      "newUser": 51,
+      "accmUser": 1152,
+      "dormantUser": 3,
+      "withdrawUser": 3,
+      "visitUser": 71,
+      "visitCnt": 107,
+      "visitUserRatio": 35.4
+    },
+    {
+      "date": "20180618",
+      "newUser": 26,
+      "accmUser": 1178,
+      "dormantUser": 5,
+      "withdrawUser": 1,
+      "visitUser": 36,
+      "visitCnt": 64,
+      "visitUserRatio": 32.4
+    },
+    {
+      "date": "20180619",
+      "newUser": 37,
+      "accmUser": 1215,
+      "dormantUser": 7,
+      "withdrawUser": 3,
+      "visitUser": 64,
+      "visitCnt": 77,
+      "visitUserRatio": 18.4
+    },
+    {
+      "date": "20180620",
+      "newUser": 58,
+      "accmUser": 1273,
+      "dormantUser": 5,
+      "withdrawUser": 0,
+      "visitUser": 68,
+      "visitCnt": 82,
+      "visitUserRatio": 25.4
+    },
+    {
+      "date": "20180621",
+      "newUser": 49,
+      "accmUser": 1322,
+      "dormantUser": 2,
+      "withdrawUser": 0,
+      "visitUser": 59,
+      "visitCnt": 68,
+      "visitUserRatio": 32.4
+    },
+    {
+      "date": "20180622",
+      "newUser": 42,
+      "accmUser": 1364,
+      "dormantUser": 9,
+      "withdrawUser": 5,
+      "visitUser": 53,
+      "visitCnt": 65,
+      "visitUserRatio": 30.4
+    },
+    {
+      "date": "20180623",
+      "newUser": 93,
+      "accmUser": 1457,
+      "dormantUser": 4,
+      "withdrawUser": 5,
+      "visitUser": 241,
+      "visitCnt": 209,
+      "visitUserRatio": 39.4
+    },
+    {
+      "date": "20180624",
+      "newUser": 221,
+      "accmUser": 1778,
+      "dormantUser": 2,
+      "withdrawUser": 11,
+      "visitUser": 104,
+      "visitCnt": 183,
+      "visitUserRatio": 37.4
+    },
+    {
+      "date": "20180625",
+      "newUser": 73,
+      "accmUser": 1651,
+      "dormantUser": 6,
+      "withdrawUser": 0,
+      "visitUser": 95,
+      "visitCnt": 148,
+      "visitUserRatio": 29.4
+    },
+    {
+      "date": "20180626",
+      "newUser": 69,
+      "accmUser": 1720,
+      "dormantUser": 3,
+      "withdrawUser": 4,
+      "visitUser": 105,
+      "visitCnt": 156,
+      "visitUserRatio": 37.4
+    },
+    {
+      "date": "20180627",
+      "newUser": 82,
+      "accmUser": 1802,
+      "dormantUser": 12,
+      "withdrawUser": 8,
+      "visitUser": 117,
+      "visitCnt": 190,
+      "visitUserRatio": 36.4
+    }
+  ]
+}

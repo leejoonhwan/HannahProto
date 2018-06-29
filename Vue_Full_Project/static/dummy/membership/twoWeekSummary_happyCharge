@@ -3,100 +3,100 @@
     "dataSet": [
         {
             "date": "20180614",
-            "newUserCnt": 30,
-            "accmUserCnt": 1030,
-            "visitUserCnt": 30,
+            "newUser": 30,
+            "accmUser": 1030,
+            "visitUser": 30,
             "visitCnt": 44
         },
         {
             "date": "20180615",
-            "newUserCnt": 25,
-            "accmUserCnt": 1055,
-            "visitUserCnt": 22,
+            "newUser": 25,
+            "accmUser": 1055,
+            "visitUser": 22,
             "visitCnt": 35
         },
         {
             "date": "20180616",
-            "newUserCnt": 46,
-            "accmUserCnt": 1101,
-            "visitUserCnt": 66,
+            "newUser": 46,
+            "accmUser": 1101,
+            "visitUser": 66,
             "visitCnt": 98
         },
         {
             "date": "20180617",
-            "newUserCnt": 51,
-            "accmUserCnt": 1152,
-            "visitUserCnt": 71,
+            "newUser": 51,
+            "accmUser": 1152,
+            "visitUser": 71,
             "visitCnt": 107
         },
         {
             "date": "20180618",
-            "newUserCnt": 26,
-            "accmUserCnt": 1178,
-            "visitUserCnt": 36,
+            "newUser": 26,
+            "accmUser": 1178,
+            "visitUser": 36,
             "visitCnt": 64
         },
         {
             "date": "20180619",
-            "newUserCnt": 37,
-            "accmUserCnt": 1215,
-            "visitUserCnt": 64,
+            "newUser": 37,
+            "accmUser": 1215,
+            "visitUser": 64,
             "visitCnt": 77
         },
         {
             "date": "20180620",
-            "newUserCnt": 58,
-            "accmUserCnt": 1273,
-            "visitUserCnt": 68,
+            "newUser": 58,
+            "accmUser": 1273,
+            "visitUser": 68,
             "visitCnt": 82
         },
         {
             "date": "20180621",
-            "newUserCnt": 49,
-            "accmUserCnt": 1322,
-            "visitUserCnt": 59,
+            "newUser": 49,
+            "accmUser": 1322,
+            "visitUser": 59,
             "visitCnt": 68
         },
         {
             "date": "20180622",
-            "newUserCnt": 42,
-            "accmUserCnt": 1364,
-            "visitUserCnt": 53,
+            "newUser": 42,
+            "accmUser": 1364,
+            "visitUser": 53,
             "visitCnt": 65
         },
         {
             "date": "20180623",
-            "newUserCnt": 93,
-            "accmUserCnt": 1457,
-            "visitUserCnt": 171,
+            "newUser": 93,
+            "accmUser": 1457,
+            "visitUser": 171,
             "visitCnt": 207
         },
         {
             "date": "20180624",
-            "newUserCnt": 121,
-            "accmUserCnt": 1578,
-            "visitUserCnt": 104,
+            "newUser": 121,
+            "accmUser": 1578,
+            "visitUser": 104,
             "visitCnt": 183
         },
         {
             "date": "20180625",
-            "newUserCnt": 73,
-            "accmUserCnt": 1651,
-            "visitUserCnt": 95,
+            "newUser": 73,
+            "accmUser": 1651,
+            "visitUser": 95,
             "visitCnt": 148
         },
         {
             "date": "20180626",
-            "newUserCnt": 69,
-            "accmUserCnt": 1720,
-            "visitUserCnt": 105,
+            "newUser": 69,
+            "accmUser": 1720,
+            "visitUser": 105,
             "visitCnt": 156
         },
         {
             "date": "20180627",
-            "newUserCnt": 82,
-            "accmUserCnt": 1802,
-            "visitUserCnt": 117,
+            "newUser": 82,
+            "accmUser": 1802,
+            "visitUser": 117,
             "visitCnt": 190
         }
     ]

@@ -1,0 +1,90 @@
+{
+  "membershipId": "levis",
+  "totalCount": 14,
+  "dataSet": [
+    {
+      "date": "20180514",
+      "user": 332,
+      "savePt": 34456,
+      "usedPt": 13456
+    },
+    {
+      "date": "20180515",
+      "user": 304,
+      "savePt": 25677,
+      "usedPt": 17565
+    },
+    {
+      "date": "20180516",
+      "user": 421,
+      "savePt": 46677,
+      "usedPt": 25567
+    },
+    {
+      "date": "20180517",
+      "user": 456,
+      "savePt": 57788,
+      "usedPt": 22344
+    },
+    {
+      "date": "20180518",
+      "user": 301,
+      "savePt": 34676,
+      "usedPt": 6644
+    },
+    {
+      "date": "20180519",
+      "user": 256,
+      "savePt": 23455,
+      "usedPt": 7765
+    },
+    {
+      "date": "20180520",
+      "user": 367,
+      "savePt": 35788,
+      "usedPt": 13466
+    },
+    {
+      "date": "20180521",
+      "user": 335,
+      "savePt": 36898,
+      "usedPt": 23456
+    },
+    {
+      "date": "20180522",
+      "user": 390,
+      "savePt": 45726,
+      "usedPt": 23456
+    },
+    {
+      "date": "20180523",
+      "user": 432,
+      "savePt": 53456,
+      "usedPt": 33456
+    },
+    {
+      "date": "20180524",
+      "user": 448,
+      "savePt": 52134,
+      "usedPt": 26678
+    },
+    {
+      "date": "20180525",
+      "user": 318,
+      "savePt": 23466,
+      "usedPt": 5623
+    },
+    {
+      "date": "20180526",
+      "user": 365,
+      "savePt": 32722,
+      "usedPt": 12346
+    },
+    {
+      "date": "20180527",
+      "user": 344,
+      "savePt": 47889,
+      "usedPt": 23488
+    }
+  ]
+}
