@@ -27,13 +27,13 @@ export default {
           title: '멤버십 회원 가입 ({{lastDate}} 기준)',
           desc: '누적 {{lastAccm}} 명 (신규 {{lastDaily}} 명)',
           api: '/membership/twoWeekSummary',
-          fields: ['newUserCnt', 'accmUserCnt']
+          fields: ['newUser', 'accmUser']
         },
         'visit-count': {
           title: '멤버십 카드 방문 ({{lastDate}} 기준)',
           desc: '당일 {{lastAccm}} 명 ({{lastDaily}} 건)',
           api: '/membership/twoWeekSummary',
-          fields: ['visitUserCnt', 'visitCnt']
+          fields: ['visitUser', 'visitCnt']
         },
         'mileage-save': {
           title: '마일리지 적립 ({{lastDate}} 기준)',

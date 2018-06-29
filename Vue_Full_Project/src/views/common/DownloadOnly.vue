@@ -5,7 +5,7 @@
     <date-range-picker v-if="config[dataType].showDatePicker" class="float-right px-2 innerSelect" opens="left" :startDate="pickedDates.startDate" :endDate="pickedDates.endDate" @input="console.log(value)"/>
     <div v-for="item in config[dataType].selectForms" :key="item.id">
       <div class="float-right px-2" >
-        <b-form-select class="innerSelect" :options="item.items" :value="item.default"/>
+        <b-form-select v-model="item.selected" class="innerSelect" :options="item.items" :value="item.selected"/>
       </div>
     </div>
   </b-card>
@@ -37,14 +37,14 @@ export default {
                 { value: 'family', text: 'Family 등급 회원' },
                 { value: 'vip', text: 'VIP 등급 회원' }
               ],
-              default: 'all'
+              selected: 'all'
             }, {
               id: 2,
               items: [
                 { value: 'save', text: '적립 건수 기준' },
                 { value: 'use', text: '사용 건수 기준' }
               ],
-              default: 'save'
+              selected: 'save'
             }
           ]
         },
@@ -63,7 +63,7 @@ export default {
                 { value: 'visit_count', text: '멤버십 방문 (건수)' },
                 { value: 'visit_user', text: '멤버십 방문 (회원수)' }
               ],
-              default: 'new_join'
+              selected: 'new_join'
             }, {
               id: 2,
               items: [
@@ -71,7 +71,7 @@ export default {
                 { value: 'weekly', text: '주간' },
                 { value: 'monthly', text: '월간' }
               ],
-              default: 'daily'
+              selected: 'daily'
             }
           ]
         },
@@ -90,7 +90,7 @@ export default {
                 { value: 'family', text: 'Family 등급 회원' },
                 { value: 'vip', text: 'VIP 등급 회원' }
               ],
-              default: 'family'
+              selected: 'family'
             }
           ]
         }
