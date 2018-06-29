@@ -26,7 +26,6 @@ import BarTopHalf from '../common/BarTopHalf'
 import TimeSeries from '../common/TimeSeries'
 import TableCard from '../common/TableCard'
 import MembershipDemography from '../common/MembershipDemography'
-import MemberGenderAgeComponent from '../dashboard/MemberGenderAgeComponent'
 import DownloadOnly from '../common/DownloadOnly'
 
 export default {
@@ -36,8 +35,7 @@ export default {
     TimeSeries,
     TableCard,
     MembershipDemography,
-    DownloadOnly,
-    MemberGenderAgeComponent
+    DownloadOnly
   }
 }
 </script>
