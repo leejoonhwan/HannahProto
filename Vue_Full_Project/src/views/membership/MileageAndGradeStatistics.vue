@@ -46,51 +46,10 @@ export default {
     TableCard,
     GradeDemography,
     DownloadOnly
-  },
-  data () {
-    return {
-      getMemberCount: '/static/dummy/getMemberCount',
-      getVisitCount: '/static/dummy/getMemberVisitCount'
-    }
-  },
-  methods: {
-  },
-  mounted () {
   }
 }
 </script>
 
 <style scoped>
-  .demo {
-    margin:20px;
-  }
-  .label{
-    display: inline-block;
-    margin-right: 1em;
-  }
-  .pre {
-    padding: 16px;
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f6f8fa;
-    border-radius: 3px;
-  }
-  .example {
-    padding: 45px;
-    word-wrap: break-word;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-  }
-  .example > .demo {
-    display: inline-block;
-  }
-  .tips {
-    margin: 0;
-    padding: 0 1em;
-    color: #6a737d;
-    border-left: 0.25em solid #dfe2e5;
-  }
+
 </style>

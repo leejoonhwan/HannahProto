@@ -1,8 +1,9 @@
 <template>
   <b-card>
     <b-row>
-      <b-col>
+      <b-col class="d-flex flex-nowrap">
         <h4 id="traffic" class="card-title mb-0">{{this.config[this.dataType].title }}</h4>
+        <div v-if="statDate" class="px-2">({{ this.statDate }} 기준)</div>
       </b-col>
     </b-row>
     <b-row>
@@ -37,7 +38,7 @@
 
 <script>
 
-// import moment from 'moment'
+import moment from 'moment'
 import numeral from 'numeral'
 // import DateRangePicker from 'vue2-daterange-picker'
 import DateRangePicker from './datepicker/DateRangePicker'
@@ -91,13 +92,21 @@ export default {
       pickedDates: { startDate: '2018-05-01', endDate: '2018-05-27' },
       startDate: '2018-05-01',
       endDate: '2018-05-28',
+      statDate: null,
       rows: [],
       config: {
         'prefer_shop': {
           title: '선호 매장 설정 회원',
           showDatePicker: false,
           selectForms: [],
-          api: 'static/dummy/preferShop'
+          fields: [
+            { key: 'merchantId', label: '매장ID', sortable: true, tdClass: 'text-center', thClass: ['table-active', 'text-center'] },
+            { key: 'merchantName', label: '매장명', sortable: true, tdClass: 'text-center', thClass: ['table-active', 'text-center'] },
+            { key: 'address', label: '주소', sortable: true, tdClass: 'px-2', thClass: ['table-active', 'text-center'] },
+            { key: 'userCnt', label: '회원수', sortable: true, formatter: 'numberFormat', tdClass: 'text-center', thClass: ['table-active', 'text-center'] },
+            { key: 'actions', label: 'Excel', tdClass: 'text-center', thClass: ['table-active', 'text-center'] }
+          ],
+          api: '/membership/preferShop'
         },
         'mileage_used_shop': {
           title: '마일리지 이용 매장 통계',
@@ -122,8 +131,9 @@ export default {
       fetch(DhUtil.makeApiUrl(this.config[this.dataType].api) + '_' + membershipId)
         .then(res => res.json())
         .then(response => {
-          this.rows = response.data
+          this.rows = response.dataSet
           this.totalRows = this.rows.length
+          if (response.statDate) this.statDate = moment(response.statDate, 'YYYYMMDD').format('M/D')
         })
     },
     numberFormat (val) {
