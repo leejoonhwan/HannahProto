@@ -13,14 +13,14 @@
                          v-model="config[dataType].periodUnits.selected"
                          :options="config[dataType].periodUnits.items"
                          :value="config[dataType].periodUnits.selected"
-                         @change="changePeriodUnit"/>
+                         @change="getChartData"/>
         </div>
         <div v-if="config[dataType].dataGroups" class="float-right px-2">
           <b-form-select class="innerSelect"
                          v-model="config[dataType].dataGroups.selected"
                          :options="config[dataType].dataGroups.items"
                          :value="config[dataType].dataGroups.selected"
-                         @change="changeDataGroup"/>
+                         @change="getChartData"/>
         </div>
       </b-col>
     </b-row>
@@ -103,8 +103,8 @@ export default {
     }
   },
   methods: {
-    getChartData (selectedMembershipId) {
-      fetch(DhUtil.makeApiUrl(this.config[this.dataType].api) + '_' + selectedMembershipId)
+    getChartData () {
+      fetch(DhUtil.makeApiUrl(this.config[this.dataType].api) + '_' + this.selectedMembershipId)
         .then(res => res.json())
         .then(response => {
           this.chartData = this.makeChartData(response)
@@ -152,7 +152,6 @@ export default {
       for (let d of rawJson.dataSet) {
         result.labels.push(moment(d.date, 'YYYYMMDD').format('M/D'))
         if (this.dataType === 'membership') {
-          console.log(this.config[this.dataType].legends)
           if (this.config[this.dataType].dataGroups.selected === 'newJoin') {
             result.datasets[0].label = this.config[this.dataType].legends['accmUser']
             result.datasets[0].data.push(d.accmUser)
@@ -181,23 +180,16 @@ export default {
           result.datasets = result.datasets.slice(0, 3)
         }
       }
-      console.log(result)
       return result
     },
     dateRangePicked (event) {
-      console.log(event)
       this.pickedDates.startDate = event.startDate
       this.pickedDates.endDate = event.endDate
-    },
-    changeDataGroup (event) {
-      this.getChartData(this.selectedMembershipId)
-    },
-    changePeriodUnit (event) {
-      this.getChartData(this.selectedMembershipId)
+      this.getChartData()
     }
   },
   created () {
-    this.getChartData(this.selectedMembershipId)
+    this.getChartData()
   },
   computed: {
     selectedMembershipId () {
@@ -206,7 +198,7 @@ export default {
   },
   watch: {
     selectedMembershipId (val) {
-      this.getChartData(val)
+      this.getChartData()
     }
   }
 }
@@ -220,6 +212,7 @@ export default {
   .innerSelect {
     border: none;
     width: auto;
+    box-shadow: none;
   }
   .reportrange-text {
     border: none !important;
